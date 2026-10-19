@@ -9,7 +9,11 @@ package foldermonitor;
  * @author oleksandr.dan
  */
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.ByteBuffer;
+import java.nio.channels.SeekableByteChannel;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -19,6 +23,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 
 public class StatsStorage {
 
@@ -31,7 +36,7 @@ public class StatsStorage {
     private final Path dataDir;
 
     public StatsStorage(Path dataDir) throws IOException {
-        Files.createDirectories(dataDir);   // создаст папку, если её нет
+        Files.createDirectories(dataDir);
         if (!Files.isWritable(dataDir)) {
             throw new IOException("Нет прав на запись в папку данных: " + dataDir);
         }
@@ -53,8 +58,13 @@ public class StatsStorage {
         Path file = fileFor(watchedFolder);
         List<String> lines = new ArrayList<>();
 
-        if (!Files.exists(file) || Files.size(file) == 0) {
+        boolean isNewFile = !Files.exists(file) || Files.size(file) == 0;
+        if (isNewFile) {
             lines.add("\uFEFF" + HEADER);   // \uFEFF = BOM, чтобы Excel понял UTF-8
+        } else if (!endsWithNewline(file)) {
+            // ИЗМЕНЕНО: прошлая запись оборвалась на середине строки.
+            // Пустая строка закроет её, и новые данные не склеятся с мусором.
+            lines.add("");
         }
         for (Measurement m : rows) {
             lines.add(toLine(m));
@@ -72,20 +82,74 @@ public class StatsStorage {
             return result;
         }
 
-        List<String> lines = Files.readAllLines(file, StandardCharsets.UTF_8);
-        for (int i = 1; i < lines.size(); i++) {   // i = 1: первую строку (заголовок) пропускаем
-            String line = lines.get(i);
-            if (line.isBlank()) {
-                continue;
-            }
-            try {
-                result.add(parseLine(line));
-            } catch (RuntimeException e) {
-                System.out.println("Пропущена повреждённая строка " + (i + 1)
-                        + " в " + file.getFileName() + ": " + e.getMessage());
+        // ИЗМЕНЕНО: читаем построчно, а не readAllLines (тот падает на битых байтах)
+        try (BufferedReader reader = openReader(file)) {
+            reader.readLine();   // первая строка — заголовок, пропускаем
+            int lineNumber = 1;
+            String line;
+            while ((line = reader.readLine()) != null) {
+                lineNumber++;
+                if (line.isBlank()) {
+                    continue;
+                }
+                try {
+                    result.add(parseLine(line));
+                } catch (RuntimeException e) {
+                    System.out.println("Пропущена повреждённая строка " + lineNumber
+                            + " в " + file.getFileName() + ": " + e.getMessage());
+                }
             }
         }
         return result;
+    }
+
+    // НОВОЕ: время последнего измерения (или пусто, если измерений нет).
+    // Читает файл потоком и не хранит строки в памяти — подходит для фоновой работы.
+    public Optional<LocalDateTime> lastTime(Path watchedFolder) throws IOException {
+        Path file = fileFor(watchedFolder);
+        if (!Files.exists(file)) {
+            return Optional.empty();
+        }
+        LocalDateTime last = null;
+        try (BufferedReader reader = openReader(file)) {
+            reader.readLine();   // заголовок
+            String line;
+            while ((line = reader.readLine()) != null) {
+                int end = line.indexOf(SEP);
+                if (end < 0) {
+                    continue;
+                }
+                try {
+                    LocalDateTime t = LocalDateTime.parse(line.substring(0, end), TIME_FORMAT);
+                    if (last == null || t.isAfter(last)) {
+                        last = t;
+                    }
+                } catch (RuntimeException e) {
+                    // повреждённая строка — пропускаем
+                }
+            }
+        }
+        return Optional.ofNullable(last);
+    }
+
+    // НОВОЕ: читатель, который заменяет битые байты знаком «�» вместо ошибки
+    private static BufferedReader openReader(Path file) throws IOException {
+        return new BufferedReader(
+                new InputStreamReader(Files.newInputStream(file), StandardCharsets.UTF_8));
+    }
+
+    // НОВОЕ: заканчивается ли файл переводом строки (смотрим только последний байт)
+    private static boolean endsWithNewline(Path file) throws IOException {
+        try (SeekableByteChannel channel = Files.newByteChannel(file, StandardOpenOption.READ)) {
+            long size = channel.size();
+            if (size == 0) {
+                return true;
+            }
+            channel.position(size - 1);
+            ByteBuffer buffer = ByteBuffer.allocate(1);
+            channel.read(buffer);
+            return buffer.get(0) == '\n';
+        }
     }
 
     private static String toLine(Measurement m) {
@@ -106,7 +170,7 @@ public class StatsStorage {
         if (p.length != 8) {
             throw new IllegalArgumentException("ожидалось 8 полей, найдено " + p.length);
         }
-        return new Measurement(
+        Measurement m = new Measurement(
                 LocalDateTime.parse(p[0], TIME_FORMAT),
                 p[1],
                 Long.parseLong(p[2]),
@@ -115,6 +179,14 @@ public class StatsStorage {
                 parseOptional(p[5]),
                 parseOptional(p[6]),
                 parseOptional(p[7]));
+
+        // ИЗМЕНЕНО: проверка целостности. Если последнее число обрезалось,
+        // сумма не сойдётся, и строка отбрасывается.
+        if (m.hasTypes()
+                && m.fileCount() != m.imageCount() + m.videoCount() + m.otherCount()) {
+            throw new IllegalArgumentException("не сходится количество файлов");
+        }
+        return m;
     }
 
     private static long parseOptional(String s) {

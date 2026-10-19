@@ -17,6 +17,7 @@ import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.io.InterruptedIOException;
 
 public class FolderScanner {
 
@@ -31,6 +32,11 @@ public class FolderScanner {
 
         ScanVisitor visitor = new ScanVisitor(root);
         Files.walkFileTree(root, visitor);
+
+        // НОВОЕ: если нас прервали (выход из программы), неполные числа не отдаём
+        if (Thread.currentThread().isInterrupted()) {
+            throw new InterruptedIOException("Сбор прерван");
+        }
 
         return new ScanResult(visitor.total, filterBig(visitor.subfolders));
     }
@@ -66,6 +72,9 @@ public class FolderScanner {
 
         @Override
         public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) {
+            if (Thread.currentThread().isInterrupted()) {   // НОВОЕ
+                return FileVisitResult.TERMINATE;
+            }
             if (dir.equals(root)) {
                 return FileVisitResult.CONTINUE;
             }
@@ -83,6 +92,9 @@ public class FolderScanner {
 
         @Override
         public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
+            if (Thread.currentThread().isInterrupted()) {   // НОВОЕ
+                return FileVisitResult.TERMINATE;
+            }
             if (attrs.isRegularFile()) {
                 long size = attrs.size();
                 String name = file.getFileName().toString();

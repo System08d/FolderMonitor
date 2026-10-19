@@ -3,14 +3,21 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/oleksandr.dan/Documents/NetBeansProjects/FolderMonitor/src/foldermonitor/StatsStorage.java</file>
             <file>file:/C:/Users/oleksandr.dan/Documents/NetBeansProjects/FolderMonitor/src/foldermonitor/FileTypes.java</file>
-            <file>file:/C:/Users/oleksandr.dan/Documents/NetBeansProjects/FolderMonitor/src/foldermonitor/FolderStats.java</file>
-            <file>file:/C:/Users/oleksandr.dan/Documents/NetBeansProjects/FolderMonitor/src/foldermonitor/Measurement.java</file>
-            <file>file:/C:/Users/oleksandr.dan/Documents/NetBeansProjects/FolderMonitor/src/foldermonitor/FolderScanner.java</file>
-            <file>file:/C:/Users/oleksandr.dan/Documents/NetBeansProjects/FolderMonitor/src/foldermonitor/AppPaths.java</file>
+            <file>file:/C:/Users/oleksandr.dan/Documents/NetBeansProjects/FolderMonitor/src/foldermonitor/TrayManager.java</file>
             <file>file:/C:/Users/oleksandr.dan/Documents/NetBeansProjects/FolderMonitor/src/foldermonitor/Main.java</file>
             <file>file:/C:/Users/oleksandr.dan/Documents/NetBeansProjects/FolderMonitor/src/foldermonitor/ScanResult.java</file>
+            <file>file:/C:/Users/oleksandr.dan/Documents/NetBeansProjects/FolderMonitor/src/foldermonitor/Scheduler.java</file>
+            <file>file:/C:/Users/oleksandr.dan/Documents/NetBeansProjects/FolderMonitor/src/foldermonitor/StatsStorage.java</file>
+            <file>file:/C:/Users/oleksandr.dan/Documents/NetBeansProjects/FolderMonitor/src/foldermonitor/FolderStats.java</file>
+            <file>file:/C:/Users/oleksandr.dan/Documents/NetBeansProjects/FolderMonitor/src/foldermonitor/Settings.java</file>
+            <file>file:/C:/Users/oleksandr.dan/Documents/NetBeansProjects/FolderMonitor/src/foldermonitor/Measurement.java</file>
+            <file>file:/C:/Users/oleksandr.dan/Documents/NetBeansProjects/FolderMonitor/src/foldermonitor/FolderScanner.java</file>
+            <file>file:/C:/Users/oleksandr.dan/Documents/NetBeansProjects/FolderMonitor/src/foldermonitor/MainFrame.java</file>
+            <file>file:/C:/Users/oleksandr.dan/Documents/NetBeansProjects/FolderMonitor/src/foldermonitor/AppPaths.java</file>
+            <file>file:/C:/Users/oleksandr.dan/Documents/NetBeansProjects/FolderMonitor/src/foldermonitor/AppController.java</file>
+            <file>file:/C:/Users/oleksandr.dan/Documents/NetBeansProjects/FolderMonitor/src/foldermonitor/SingleInstance.java</file>
+            <file>file:/C:/Users/oleksandr.dan/Documents/NetBeansProjects/FolderMonitor/src/foldermonitor/AutoStart.java</file>
         </group>
     </open-files>
 </project-private>
