@@ -95,7 +95,7 @@ public class StatsStorage {
                 try {
                     result.add(parseLine(line));
                 } catch (RuntimeException e) {
-                    System.out.println("Пропущена повреждённая строка " + lineNumber
+                                        AppLog.warn("Пропущена повреждённая строка " + lineNumber
                             + " в " + file.getFileName() + ": " + e.getMessage());
                 }
             }

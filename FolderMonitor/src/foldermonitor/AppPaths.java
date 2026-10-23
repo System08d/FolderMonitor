@@ -71,4 +71,8 @@ public class AppPaths {
         return null;
     }
     
+        // НОВОЕ: папка логов лежит рядом с папкой данных (и там же, где запасной вариант)
+    public static Path logDirFor(Path dataDir) {
+        return dataDir.resolveSibling("logs");
+    }
 }

@@ -11,51 +11,54 @@ package foldermonitor;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.Duration;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 public class Main {
 
-    // Аргумент запуска "сразу свёрнутым в трей" (его же пишет AutoStart в реестр)
     public static final String MINIMIZED_ARG = "--minimized";
 
     // true = быстрые интервалы для проверки; false = боевые значения.
-    // ПЕРЕД СБОРКОЙ .jar ДЛЯ АВТОЗАПУСКА ПОСТАВЬТЕ false!
-    private static final boolean TEST_MODE = false;
+    // ПЕРЕД СБОРКОЙ .jar ДЛЯ ПОСТОЯННОЙ РАБОТЫ ПОСТАВЬТЕ false!
+    private static final boolean TEST_MODE = true;
 
-    private static final Duration INTERVAL =
-            TEST_MODE ? Duration.ofMinutes(1) : Duration.ofHours(24);   // раз в сутки
     private static final Duration CHECK_PERIOD =
             TEST_MODE ? Duration.ofSeconds(10) : Duration.ofMinutes(5);
 
-    // После автозапуска первый сбор откладываем, чтобы не грузить диск сразу после входа в Windows
     private static final Duration STARTUP_DELAY =
             TEST_MODE ? Duration.ZERO : Duration.ofMinutes(2);
 
-    // Временно: список папок задан в коде (на этапе 5 будет из настроек)
-    private static final String[] FOLDERS = { "C:\\temp\\my program" };
+    // Интервал сбора: в тестовом режиме всегда 1 минута, иначе — из настроек (в часах)
+    public static Duration intervalFor(int hours) {
+        return TEST_MODE ? Duration.ofMinutes(1) : Duration.ofHours(hours);
+    }
 
     public static void main(String[] args) {
         boolean minimized = hasArg(args, MINIMIZED_ARG);
         useSystemLookAndFeel();
 
         Path dataDir = AppPaths.dataDir();
+        AppLog.init(AppPaths.logDirFor(dataDir));
+        Thread.setDefaultUncaughtExceptionHandler((thread, error) ->
+                AppLog.error("Необработанная ошибка в потоке " + thread.getName(), error));
+
         StatsStorage storage;
         try {
             storage = new StatsStorage(dataDir);
         } catch (IOException e) {
+            AppLog.error("Не удалось открыть папку данных " + dataDir, e);
             showMessageAndExit("Не удалось открыть папку данных:\n" + e.getMessage(),
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        // Второй экземпляр не нужен: два сборщика писали бы в одни и те же файлы
         if (!SingleInstance.tryLock(dataDir)) {
+            AppLog.info("Повторный запуск: программа уже работает, вторая копия закрыта");
             if (minimized) {
-                System.exit(0);   // запуск из автозапуска — молча уходим
+                System.exit(0);
             }
             showMessageAndExit("Folder Monitor уже запущен.\n"
                     + "Найдите его значок в системном трее (возле часов).",
@@ -64,10 +67,15 @@ public class Main {
         }
 
         Settings settings = new Settings();
+        List<WatchedFolder> folders = settings.getFolders();
+        AppLog.info("=== Запуск Folder Monitor" + (minimized ? " (свёрнутым)" : "")
+                + (TEST_MODE ? " [ТЕСТОВЫЙ РЕЖИМ]" : "")
+                + ", данные: " + dataDir + ", папок в списке: " + folders.size() + " ===");
 
-        Scheduler scheduler = new Scheduler(storage, INTERVAL, CHECK_PERIOD);
-        for (String name : FOLDERS) {
-            scheduler.addFolder(Paths.get(name));
+        Scheduler scheduler = new Scheduler(
+                storage, intervalFor(settings.getIntervalHours()), CHECK_PERIOD);
+        for (WatchedFolder folder : folders) {
+            scheduler.addFolder(folder.path(), folder.enabled());
         }
         scheduler.start(minimized ? STARTUP_DELAY : Duration.ZERO);
 
@@ -75,8 +83,6 @@ public class Main {
 
         AppController controller = new AppController(settings, scheduler);
         SwingUtilities.invokeLater(() -> controller.start(minimized));
-        // main() на этом заканчивается, но программа живёт: её держат потоки
-        // планировщика и окна. Завершить её можно только через controller.exit().
     }
 
     private static boolean hasArg(String[] args, String wanted) {

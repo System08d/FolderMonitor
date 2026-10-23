@@ -41,6 +41,7 @@ public class AutoStart {
         runPowerShell(script);
         settings.setAutoStart(true);
         settings.setAutoStartCommand(command);
+                AppLog.info("Автозапуск включён: " + command);
     }
 
     // Выключить автозапуск (если записи нет — это тоже успех)
@@ -53,6 +54,7 @@ public class AutoStart {
         runPowerShell(script);
         settings.setAutoStart(false);
         settings.setAutoStartCommand("");
+                AppLog.info("Автозапуск выключен");
     }
 
     // При старте программы: если автозапуск включён, но путь к Java или к .jar изменился
@@ -74,9 +76,9 @@ public class AutoStart {
         Thread thread = new Thread(() -> {
             try {
                 enable(settings);
-                System.out.println("Запись автозапуска обновлена (изменился путь к программе)");
+                                AppLog.info("Запись автозапуска обновлена (изменился путь к программе)");
             } catch (IOException e) {
-                System.out.println("Не удалось обновить автозапуск: " + e.getMessage());
+                AppLog.warn("Не удалось обновить автозапуск: " + e.getMessage());
             }
         }, "autostart-sync");
         thread.setDaemon(true);

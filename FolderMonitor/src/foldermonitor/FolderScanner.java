@@ -10,6 +10,7 @@ package foldermonitor;
  */
 
 import java.io.IOException;
+import java.io.InterruptedIOException;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -17,7 +18,7 @@ import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.io.InterruptedIOException;
+import java.util.function.BooleanSupplier;
 
 public class FolderScanner {
 
@@ -26,16 +27,29 @@ public class FolderScanner {
     public static final long MIN_SUBFOLDER_FILES = 500;
 
     public ScanResult scan(Path root) throws IOException {
+        return scan(root, () -> false);
+    }
+
+    // cancelled — функция "пора остановиться?" (её вызывает обход по ходу работы)
+    public ScanResult scan(Path root, BooleanSupplier cancelled) throws IOException {
         if (!Files.isDirectory(root)) {
             throw new IOException("Папка не найдена или недоступна: " + root);
         }
 
-        ScanVisitor visitor = new ScanVisitor(root);
+        ScanVisitor visitor = new ScanVisitor(root, cancelled);
         Files.walkFileTree(root, visitor);
 
-        // НОВОЕ: если нас прервали (выход из программы), неполные числа не отдаём
-        if (Thread.currentThread().isInterrupted()) {
+        // Прервали (выход из программы, "Стоп", папку убрали) — неполные числа не отдаём
+        if (visitor.isStopRequested()) {
             throw new InterruptedIOException("Сбор прерван");
+        }
+        // Саму папку не удалось прочитать — это ошибка, а не "пустая папка"
+        if (visitor.rootFailed) {
+            throw new IOException("Нет доступа к папке: " + root);
+        }
+        // Папка пропала во время обхода (диск отключили) — данные были бы неполными
+        if (!Files.isDirectory(root)) {
+            throw new IOException("Папка стала недоступна во время сбора: " + root);
         }
 
         return new ScanResult(visitor.total, filterBig(visitor.subfolders));
@@ -53,38 +67,41 @@ public class FolderScanner {
         return result;
     }
 
-    // "Посетитель" вынесен во вложенный класс: ему нужны собственные поля
     private static class ScanVisitor extends SimpleFileVisitor<Path> {
 
         private final Path root;
+        private final BooleanSupplier cancelled;
         private final FolderStats total = new FolderStats();
         private final Map<String, FolderStats> subfolders = new LinkedHashMap<>();
-        private FolderStats current; // подпапка 1-го уровня, в которой мы сейчас; null = мы в корне
+        private FolderStats current;   // подпапка 1-го уровня, в которой мы сейчас; null = в корне
+        private boolean rootFailed;    // не удалось прочитать саму наблюдаемую папку
 
-        ScanVisitor(Path root) {
+        ScanVisitor(Path root, BooleanSupplier cancelled) {
             this.root = root;
+            this.cancelled = cancelled;
         }
 
-        // Куда писать числа: в текущую подпапку или, если мы прямо в корне, в общий итог
+        boolean isStopRequested() {
+            return Thread.currentThread().isInterrupted() || cancelled.getAsBoolean();
+        }
+
         private FolderStats target() {
             return current != null ? current : total;
         }
 
         @Override
         public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) {
-            if (Thread.currentThread().isInterrupted()) {   // НОВОЕ
+            if (isStopRequested()) {
                 return FileVisitResult.TERMINATE;
             }
             if (dir.equals(root)) {
                 return FileVisitResult.CONTINUE;
             }
             if (root.equals(dir.getParent())) {
-                // вошли в подпапку первого уровня
                 total.addFolder();
                 current = new FolderStats();
                 subfolders.put(dir.getFileName().toString(), current);
             } else {
-                // более глубокая папка: считаем её внутри текущей подпапки
                 target().addFolder();
             }
             return FileVisitResult.CONTINUE;
@@ -92,7 +109,7 @@ public class FolderScanner {
 
         @Override
         public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {
-            if (Thread.currentThread().isInterrupted()) {   // НОВОЕ
+            if (isStopRequested()) {
                 return FileVisitResult.TERMINATE;
             }
             if (attrs.isRegularFile()) {
@@ -113,6 +130,10 @@ public class FolderScanner {
 
         @Override
         public FileVisitResult visitFileFailed(Path file, IOException exc) {
+            if (file.equals(root)) {   // не открылась сама наблюдаемая папка
+                rootFailed = true;
+                return FileVisitResult.TERMINATE;
+            }
             target().addSkipped();
             return FileVisitResult.CONTINUE;
         }
@@ -120,7 +141,6 @@ public class FolderScanner {
         @Override
         public FileVisitResult postVisitDirectory(Path dir, IOException exc) {
             if (current != null && root.equals(dir.getParent())) {
-                // вышли из подпапки первого уровня: переносим её числа в общий итог
                 total.addAll(current);
                 current = null;
             }

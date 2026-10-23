@@ -38,7 +38,7 @@ public class SingleInstance {
             return false;
         } catch (IOException e) {
             // Не смогли проверить — лучше работать, чем отказаться запускаться
-            System.out.println("Не удалось проверить повторный запуск: " + e.getMessage());
+                        AppLog.warn("Не удалось проверить повторный запуск: " + e.getMessage());
             return true;
         }
     }

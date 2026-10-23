@@ -1,0 +1,72 @@
+2026-10-21 16:13:25 INFO  === Запуск Folder Monitor [ТЕСТОВЫЙ РЕЖИМ], данные: C:\Users\oleksandr.dan\Documents\NetBeansProjects\FolderMonitor\data, папок в списке: 0 ===
+2026-10-21 16:13:50 INFO  Добавлена папка: C:\Users\oleksandr.dan\Downloads\my program
+2026-10-21 16:13:50 INFO  C:\Users\oleksandr.dan\Downloads\my program: измерений ещё не было
+2026-10-21 16:13:50 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-10-21 16:13:50 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 52 мс, подходящих подпапок: 1
+2026-10-21 16:13:58 INFO  Интервал сбора: 1 ч
+2026-10-21 16:14:01 INFO  Интервал сбора: 168 ч
+2026-10-21 16:14:03 INFO  Интервал сбора: 48 ч
+2026-10-21 16:14:06 INFO  Интервал сбора: 24 ч
+2026-10-21 16:14:09 INFO  Интервал сбора: 12 ч
+2026-10-21 16:14:11 INFO  Интервал сбора: 24 ч
+2026-10-21 16:14:19 INFO  Сбор запущен: C:\Users\oleksandr.dan\Downloads\my program
+2026-10-21 16:14:25 INFO  Сбор остановлен: C:\Users\oleksandr.dan\Downloads\my program
+2026-10-21 16:14:30 INFO  Папка убрана из наблюдения (история в data сохранена): C:\Users\oleksandr.dan\Downloads\my program
+2026-10-21 16:14:38 INFO  Выход из программы
+2026-10-21 16:15:21 INFO  === Запуск Folder Monitor [ТЕСТОВЫЙ РЕЖИМ], данные: C:\Users\oleksandr.dan\Documents\NetBeansProjects\FolderMonitor\data, папок в списке: 0 ===
+2026-10-21 16:15:32 INFO  Добавлена папка: C:\Users\oleksandr.dan\Downloads\my program
+2026-10-21 16:15:32 INFO  C:\Users\oleksandr.dan\Downloads\my program: последнее измерение 2026-10-21 16:13:50, следующее не раньше 2026-10-21 16:14:50
+2026-10-21 16:15:32 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-10-21 16:15:32 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 20 мс, подходящих подпапок: 1
+2026-10-21 16:15:50 INFO  Добавлена папка: C:\Users\oleksandr.dan\Downloads\otro
+2026-10-21 16:15:50 INFO  C:\Users\oleksandr.dan\Downloads\otro: измерений ещё не было
+2026-10-21 16:15:50 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-10-21 16:15:51 INFO  C:\Users\oleksandr.dan\Downloads\otro: готово за 805 мс, подходящих подпапок: 2
+2026-10-21 16:15:55 INFO  Интервал сбора: 12 ч
+2026-10-21 16:15:57 INFO  Интервал сбора: 24 ч
+2026-10-21 16:16:05 INFO  Сбор остановлен: C:\Users\oleksandr.dan\Downloads\my program
+2026-10-21 16:16:20 INFO  Выход из программы
+2026-10-21 16:16:25 INFO  === Запуск Folder Monitor [ТЕСТОВЫЙ РЕЖИМ], данные: C:\Users\oleksandr.dan\Documents\NetBeansProjects\FolderMonitor\data, папок в списке: 2 ===
+2026-10-21 16:16:25 INFO  C:\Users\oleksandr.dan\Downloads\otro: последнее измерение 2026-10-21 16:15:51, следующее не раньше 2026-10-21 16:16:51
+2026-10-21 16:16:31 INFO  Выход из программы
+2026-10-21 16:18:41 INFO  === Запуск Folder Monitor [ТЕСТОВЫЙ РЕЖИМ], данные: C:\Users\oleksandr.dan\Documents\NetBeansProjects\FolderMonitor\data, папок в списке: 2 ===
+2026-10-21 16:18:41 INFO  C:\Users\oleksandr.dan\Downloads\otro: последнее измерение 2026-10-21 16:15:51, следующее не раньше 2026-10-21 16:16:51
+2026-10-21 16:18:41 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-10-21 16:18:42 INFO  C:\Users\oleksandr.dan\Downloads\otro: готово за 286 мс, подходящих подпапок: 2
+2026-10-21 16:18:47 INFO  Сбор запущен: C:\Users\oleksandr.dan\Downloads\my program
+2026-10-21 16:18:47 INFO  C:\Users\oleksandr.dan\Downloads\my program: последнее измерение 2026-10-21 16:15:32, следующее не раньше 2026-10-21 16:16:32
+2026-10-21 16:18:47 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-10-21 16:18:47 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 11 мс, подходящих подпапок: 1
+2026-10-21 16:19:42 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-10-21 16:19:42 INFO  C:\Users\oleksandr.dan\Downloads\otro: готово за 184 мс, подходящих подпапок: 2
+2026-10-21 16:19:52 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-10-21 16:19:52 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 15 мс, подходящих подпапок: 2
+2026-10-21 16:19:56 INFO  Выход из программы
+2026-10-21 16:22:45 INFO  === Запуск Folder Monitor [ТЕСТОВЫЙ РЕЖИМ], данные: C:\Users\oleksandr.dan\Documents\NetBeansProjects\FolderMonitor\data, папок в списке: 2 ===
+2026-10-21 16:22:45 INFO  C:\Users\oleksandr.dan\Downloads\my program: последнее измерение 2026-10-21 16:19:52, следующее не раньше 2026-10-21 16:20:52
+2026-10-21 16:22:45 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-10-21 16:22:45 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 30 мс, подходящих подпапок: 2
+2026-10-21 16:22:45 INFO  C:\Users\oleksandr.dan\Downloads\otro: последнее измерение 2026-10-21 16:19:42, следующее не раньше 2026-10-21 16:20:42
+2026-10-21 16:22:45 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-10-21 16:22:46 INFO  C:\Users\oleksandr.dan\Downloads\otro: готово за 251 мс, подходящих подпапок: 2
+2026-10-21 16:22:58 INFO  Добавлена папка: C:\Windows
+2026-10-21 16:22:58 INFO  C:\Windows: измерений ещё не было
+2026-10-21 16:22:58 INFO  C:\Windows: начат сбор
+2026-10-21 16:23:01 INFO  C:\Windows: сбор прерван, данные не записаны
+2026-10-21 16:23:01 INFO  Сбор остановлен: C:\Windows
+2026-10-21 16:23:46 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-10-21 16:23:46 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 9 мс, подходящих подпапок: 2
+2026-10-21 16:23:46 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-10-21 16:23:46 INFO  C:\Users\oleksandr.dan\Downloads\otro: готово за 152 мс, подходящих подпапок: 2
+2026-10-21 16:24:46 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-10-21 16:24:46 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 8 мс, подходящих подпапок: 2
+2026-10-21 16:24:46 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-10-21 16:24:46 WARN  C:\Users\oleksandr.dan\Downloads\otro: ошибка — Папка не найдена или недоступна: C:\Users\oleksandr.dan\Downloads\otro. Данные не записаны, повтор при следующей проверке
+2026-10-21 16:24:56 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-10-21 16:25:06 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-10-21 16:25:16 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-10-21 16:25:26 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-10-21 16:25:26 INFO  C:\Users\oleksandr.dan\Downloads\otro: готово за 186 мс, подходящих подпапок: 2 [папка снова доступна]
+2026-10-21 16:25:46 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-10-21 16:25:46 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 8 мс, подходящих подпапок: 2
+2026-10-21 16:26:17 INFO  Выход из программы

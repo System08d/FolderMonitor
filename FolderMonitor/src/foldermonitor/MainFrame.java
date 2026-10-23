@@ -9,17 +9,16 @@ package foldermonitor;
  * @author oleksandr.dan
  */
 
+import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
 import javax.swing.BorderFactory;
-import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -30,8 +29,6 @@ public class MainFrame extends JFrame {
         super("Folder Monitor");
         setIconImage(TrayManager.createIcon());
 
-        // Крестик НЕ закрывает окно сам: решение принимает AppController
-        // (спрятаться в трей или завершить программу)
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             @Override
@@ -39,9 +36,6 @@ public class MainFrame extends JFrame {
                 controller.windowCloseRequested();
             }
         });
-
-        JLabel info = new JLabel("<html>Приложение работает, данные собираются в фоне.<br>"
-                + "Папки и графики появятся на следующих этапах.</html>");
 
         // ---- галочка "Сворачивать в трей" ----
         JCheckBox trayBox = new JCheckBox("Сворачивать в трей при закрытии окна");
@@ -64,14 +58,13 @@ public class MainFrame extends JFrame {
         }
         autoStartBox.addActionListener(e -> {
             boolean wanted = autoStartBox.isSelected();
-            autoStartBox.setEnabled(false);   // на время операции
-            // PowerShell запускается долго (доли секунды), поэтому делаем это не в потоке окна
+            autoStartBox.setEnabled(false);
             new Thread(() -> {
                 String error = changeAutoStart(settings, wanted);
-                SwingUtilities.invokeLater(() -> {   // вернулись в поток окна
+                SwingUtilities.invokeLater(() -> {
                     autoStartBox.setEnabled(true);
                     if (error != null) {
-                        autoStartBox.setSelected(!wanted);   // откатываем галочку
+                        autoStartBox.setSelected(!wanted);
                         JOptionPane.showMessageDialog(this,
                                 "Не удалось изменить автозапуск:\n" + error,
                                 "Автозапуск", JOptionPane.ERROR_MESSAGE);
@@ -80,25 +73,25 @@ public class MainFrame extends JFrame {
             }, "autostart-change").start();
         });
 
-        // ---- раскладка: элементы друг под другом, выровненные по левому краю ----
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        panel.setBorder(BorderFactory.createEmptyBorder(16, 16, 16, 16));
-        panel.setPreferredSize(new Dimension(460, 180));
-        for (Component c : new Component[] { info, trayBox, autoStartBox }) {
-            ((javax.swing.JComponent) c).setAlignmentX(Component.LEFT_ALIGNMENT);
-        }
-        panel.add(info);
-        panel.add(Box.createVerticalStrut(16));
-        panel.add(trayBox);
-        panel.add(autoStartBox);
+        JPanel options = new JPanel();
+        options.setLayout(new BoxLayout(options, BoxLayout.Y_AXIS));
+        trayBox.setAlignmentX(Component.LEFT_ALIGNMENT);
+        autoStartBox.setAlignmentX(Component.LEFT_ALIGNMENT);
+        options.add(trayBox);
+        options.add(autoStartBox);
 
-        setContentPane(panel);
+        // ---- сборка окна: сверху временная панель папок, снизу галочки ----
+        JPanel content = new JPanel(new BorderLayout(0, 12));
+        content.setBorder(BorderFactory.createEmptyBorder(16, 16, 16, 16));
+        content.add(new FoldersPanel(controller), BorderLayout.CENTER);
+        content.add(options, BorderLayout.SOUTH);
+        content.setPreferredSize(new Dimension(560, 480));
+
+        setContentPane(content);
         pack();
-        setLocationRelativeTo(null);   // по центру экрана
+        setLocationRelativeTo(null);
     }
 
-    // Возвращает null при успехе или текст ошибки
     private static String changeAutoStart(Settings settings, boolean wanted) {
         try {
             if (wanted) {

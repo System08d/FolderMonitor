@@ -11,74 +11,124 @@ package foldermonitor;
 
 import java.awt.AWTException;
 import java.awt.Frame;
+import java.nio.file.Path;
+import java.util.List;
 
 public class AppController {
 
     private final Settings settings;
     private final Scheduler scheduler;
-    private TrayManager tray;     // null, если трей не поддерживается или ещё не создан
-    private MainFrame frame;      // null, пока окна нет (тогда оно не занимает память)
+    private TrayManager tray;
+    private MainFrame frame;
 
     public AppController(Settings settings, Scheduler scheduler) {
         this.settings = settings;
         this.scheduler = scheduler;
     }
 
-    // Вызывается один раз при старте, в потоке окна
+    // ================== жизнь окна и трея ==================
+
     public void start(boolean minimized) {
         applyTraySetting();
-        // Если значка нет, то без окна приложение было бы невидимым — окно показываем в любом случае
         boolean hidden = minimized && tray != null && tray.isInstalled();
         if (!hidden) {
             openWindow();
         }
     }
 
-    // Показать окно (создать заново, если его не было)
     public void openWindow() {
         if (frame == null) {
             frame = new MainFrame(settings, this);
         }
         frame.setVisible(true);
-        frame.setState(Frame.NORMAL);   // если было свёрнуто на панель задач
+        frame.setState(Frame.NORMAL);
         frame.toFront();
     }
 
-    // Пользователь нажал на крестик
     public void windowCloseRequested() {
         if (tray != null && tray.isInstalled()) {
-            closeWindow();     // прячемся в трей
+            closeWindow();
         } else {
-            exit();            // трея нет или он выключен — завершаем программу
+            exit();
         }
     }
 
-    // Галочка "Сворачивать в трей" изменилась
     public void setMinimizeToTray(boolean value) {
         settings.setMinimizeToTray(value);
         applyTraySetting();
     }
 
-    // Полный выход: останавливаем сбор (прерывая обход, если он идёт) и завершаем процесс
     public void exit() {
         closeWindow();
         if (tray != null) {
             tray.uninstall();
         }
         scheduler.stop();
+        AppLog.info("Выход из программы");
         System.exit(0);
     }
 
-    // Уничтожаем окно полностью, чтобы освободить память
-    private void closeWindow() {
-        if (frame != null) {
-            frame.dispose();   // освобождает ресурсы окна (setVisible(false) этого не делает)
-            frame = null;      // ссылки больше нет — сборщик мусора заберёт объект
-            System.gc();       // подсказка сборщику мусора (не гарантия)
+    // ================== папки и интервал (НОВОЕ) ==================
+
+    public List<Path> getFolders() {
+        return scheduler.getFolders();
+    }
+
+    public Scheduler.FolderStatus getStatus(Path folder) {
+        return scheduler.getStatus(folder);
+    }
+
+    // false, если такая папка уже есть
+    public boolean addFolder(Path folder) {
+        if (!scheduler.addFolder(folder, true)) {
+            return false;
+        }
+        saveFolders();
+        AppLog.info("Добавлена папка: " + folder);
+        scheduler.checkSoon();   // первый сбор сразу, а не через несколько минут
+        return true;
+    }
+
+    public void removeFolder(Path folder) {
+        scheduler.removeFolder(folder);
+        saveFolders();
+        AppLog.info("Папка убрана из наблюдения (история в data сохранена): " + folder);
+    }
+
+    public void setFolderEnabled(Path folder, boolean enabled) {
+        scheduler.setEnabled(folder, enabled);
+        saveFolders();
+        AppLog.info((enabled ? "Сбор запущен: " : "Сбор остановлен: ") + folder);
+        if (enabled) {
+            scheduler.checkSoon();
         }
     }
 
-    // Привести значок в трее в соответствие с настройкой
+    public int getIntervalHours() {
+        return settings.getIntervalHours();
+    }
+
+    public void setIntervalHours(int hours) {
+        settings.setIntervalHours(hours);
+        scheduler.setInterval(Main.intervalFor(hours));
+        AppLog.info("Интервал сбора: " + hours + " ч");
+        scheduler.checkSoon();
+    }
+
+    private void saveFolders() {
+        settings.saveFolders(scheduler.getFolderConfigs());
+    }
+
+    // ================== внутреннее ==================
+
+    private void closeWindow() {
+        if (frame != null) {
+            frame.dispose();
+            frame = null;
+            System.gc();
+        }
+    }
+
     private void applyTraySetting() {
         if (!TrayManager.isSupported()) {
             return;
@@ -90,7 +140,7 @@ public class AppController {
             try {
                 tray.install();
             } catch (AWTException e) {
-                System.out.println("Не удалось добавить значок в трей: " + e.getMessage());
+                AppLog.warn("Не удалось добавить значок в трей: " + e.getMessage());
             }
         } else if (tray != null) {
             tray.uninstall();
