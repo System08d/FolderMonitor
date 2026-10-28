@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package foldermonitor;
 
 /**
@@ -18,12 +14,19 @@ public class AppController {
 
     private final Settings settings;
     private final Scheduler scheduler;
+    private final DataProvider data;
     private TrayManager tray;
     private MainFrame frame;
 
-    public AppController(Settings settings, Scheduler scheduler) {
+    public AppController(Settings settings, Scheduler scheduler, StatsStorage storage) {
         this.settings = settings;
         this.scheduler = scheduler;
+        this.data = new DataProvider(storage);
+    }
+
+    // НОВОЕ: чтение истории для графиков
+    public DataProvider getDataProvider() {
+        return data;
     }
 
     // ================== жизнь окна и трея ==================
@@ -36,8 +39,9 @@ public class AppController {
         }
     }
 
-    public void openWindow() {
+        public void openWindow() {
         if (frame == null) {
+            Theme.installLookAndFeel();   // НОВОЕ: при первом открытии окна
             frame = new MainFrame(settings, this);
         }
         frame.setVisible(true);

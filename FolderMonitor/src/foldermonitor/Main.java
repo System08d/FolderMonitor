@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package foldermonitor;
 
 /**
@@ -15,14 +11,13 @@ import java.time.Duration;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
 
 public class Main {
 
     public static final String MINIMIZED_ARG = "--minimized";
 
     // true = быстрые интервалы для проверки; false = боевые значения.
-    // ПЕРЕД СБОРКОЙ .jar ДЛЯ ПОСТОЯННОЙ РАБОТЫ ПОСТАВЬТЕ false!
+    // ПЕРЕД СБОРКОЙ .jar ДЛЯ ПОСТОЯННОЙ РАБОТЫ ПОСТАВЬ false!
     private static final boolean TEST_MODE = true;
 
     private static final Duration CHECK_PERIOD =
@@ -38,7 +33,7 @@ public class Main {
 
     public static void main(String[] args) {
         boolean minimized = hasArg(args, MINIMIZED_ARG);
-        useSystemLookAndFeel();
+        
 
         Path dataDir = AppPaths.dataDir();
         AppLog.init(AppPaths.logDirFor(dataDir));
@@ -81,7 +76,7 @@ public class Main {
 
         AutoStart.syncOnStart(settings);
 
-        AppController controller = new AppController(settings, scheduler);
+        AppController controller = new AppController(settings, scheduler, storage);
         SwingUtilities.invokeLater(() -> controller.start(minimized));
     }
 
@@ -94,16 +89,9 @@ public class Main {
         return false;
     }
 
-    private static void useSystemLookAndFeel() {
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {
-            // не страшно: останется стандартный вид Java
-        }
-    }
-
-    private static void showMessageAndExit(String text, int messageType) {
+        private static void showMessageAndExit(String text, int messageType) {
         SwingUtilities.invokeLater(() -> {
+            Theme.installLookAndFeel();   // НОВОЕ
             JOptionPane.showMessageDialog(null, text, "Folder Monitor", messageType);
             System.exit(0);
         });

@@ -70,3 +70,51 @@
 2026-10-21 16:25:46 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
 2026-10-21 16:25:46 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 8 мс, подходящих подпапок: 2
 2026-10-21 16:26:17 INFO  Выход из программы
+2026-10-27 18:17:11 INFO  === Запуск Folder Monitor [ТЕСТОВЫЙ РЕЖИМ], данные: C:\Users\oleksandr.dan\Documents\NetBeansProjects\FolderMonitor\data, папок в списке: 3 ===
+2026-10-27 18:17:11 INFO  C:\Users\oleksandr.dan\Downloads\my program: последнее измерение 2026-10-21 16:25:46, следующее не раньше 2026-10-21 16:26:46
+2026-10-27 18:17:11 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-10-27 18:17:11 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 78 мс, подходящих подпапок: 2
+2026-10-27 18:17:11 INFO  C:\Users\oleksandr.dan\Downloads\otro: последнее измерение 2026-10-21 16:25:26, следующее не раньше 2026-10-21 16:26:26
+2026-10-27 18:17:11 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-10-27 18:17:12 INFO  C:\Users\oleksandr.dan\Downloads\otro: готово за 859 мс, подходящих подпапок: 2
+2026-10-27 18:18:12 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-10-27 18:18:12 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 12 мс, подходящих подпапок: 2
+2026-10-27 18:18:12 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-10-27 18:18:12 INFO  C:\Users\oleksandr.dan\Downloads\otro: готово за 148 мс, подходящих подпапок: 2
+2026-10-27 18:19:12 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-10-27 18:19:13 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 9 мс, подходящих подпапок: 2
+2026-10-27 18:19:13 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-10-27 18:19:13 INFO  C:\Users\oleksandr.dan\Downloads\otro: готово за 161 мс, подходящих подпапок: 2
+2026-10-27 18:20:13 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-10-27 18:20:13 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 12 мс, подходящих подпапок: 2
+2026-10-27 18:20:13 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-10-27 18:20:13 INFO  C:\Users\oleksandr.dan\Downloads\otro: готово за 131 мс, подходящих подпапок: 2
+2026-10-27 18:21:13 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-10-27 18:21:13 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 12 мс, подходящих подпапок: 2
+2026-10-27 18:21:13 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-10-27 18:21:13 INFO  C:\Users\oleksandr.dan\Downloads\otro: готово за 141 мс, подходящих подпапок: 2
+2026-10-27 18:22:13 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-10-27 18:22:13 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 6 мс, подходящих подпапок: 2
+2026-10-27 18:22:13 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-10-27 18:22:13 INFO  C:\Users\oleksandr.dan\Downloads\otro: готово за 159 мс, подходящих подпапок: 2
+2026-10-27 18:23:13 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-10-27 18:23:13 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 8 мс, подходящих подпапок: 2
+2026-10-27 18:23:13 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-10-27 18:23:13 INFO  C:\Users\oleksandr.dan\Downloads\otro: готово за 135 мс, подходящих подпапок: 2
+2026-10-27 18:24:14 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-10-27 18:24:14 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 10 мс, подходящих подпапок: 2
+2026-10-27 18:24:14 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-10-27 18:24:14 INFO  C:\Users\oleksandr.dan\Downloads\otro: готово за 140 мс, подходящих подпапок: 2
+2026-10-27 18:24:17 INFO  Выход из программы
+2026-10-27 20:29:38 INFO  === Запуск Folder Monitor [ТЕСТОВЫЙ РЕЖИМ], данные: C:\Users\oleksandr.dan\Documents\NetBeansProjects\FolderMonitor\data, папок в списке: 3 ===
+2026-10-27 20:29:38 INFO  C:\Users\oleksandr.dan\Downloads\my program: последнее измерение 2026-10-27 18:24:14, следующее не раньше 2026-10-27 18:25:14
+2026-10-27 20:29:38 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-10-27 20:29:38 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 28 мс, подходящих подпапок: 2
+2026-10-27 20:29:38 INFO  C:\Users\oleksandr.dan\Downloads\otro: последнее измерение 2026-10-27 18:24:14, следующее не раньше 2026-10-27 18:25:14
+2026-10-27 20:29:38 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-10-27 20:29:39 INFO  C:\Users\oleksandr.dan\Downloads\otro: готово за 561 мс, подходящих подпапок: 2
+2026-10-27 20:30:39 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-10-27 20:30:39 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 13 мс, подходящих подпапок: 2
+2026-10-27 20:30:39 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-10-27 20:30:39 INFO  C:\Users\oleksandr.dan\Downloads\otro: готово за 152 мс, подходящих подпапок: 2
+2026-10-27 20:31:20 INFO  Выход из программы

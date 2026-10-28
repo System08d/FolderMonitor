@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package foldermonitor;
 
 /**
@@ -15,6 +11,7 @@ import java.io.InputStreamReader;
 import java.nio.ByteBuffer;
 import java.nio.channels.SeekableByteChannel;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
@@ -72,6 +69,13 @@ public class StatsStorage {
 
         Files.write(file, lines, StandardCharsets.UTF_8,
                 StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+
+        // НОВОЕ: запоминаем путь папки рядом с CSV. Если не получилось, измерение всё равно записано.
+        try {
+            rememberPath(watchedFolder);
+        } catch (IOException e) {
+            AppLog.warn("Не удалось записать путь папки рядом с CSV: " + e.getMessage());
+        }
     }
 
     // Прочитать всю историю папки. Если файла ещё нет — пустой список.
@@ -132,7 +136,56 @@ public class StatsStorage {
         return Optional.ofNullable(last);
     }
 
-    // НОВОЕ: читатель, который заменяет битые байты знаком «�» вместо ошибки
+    // НОВОЕ: есть ли у папки хотя бы файл истории
+    public boolean hasHistory(Path watchedFolder) {
+        try {
+            Path file = fileFor(watchedFolder);
+            return Files.exists(file) && Files.size(file) > 0;
+        } catch (IOException e) {
+            return false;
+        }
+    }
+
+    // НОВОЕ: рядом с CSV лежит маленький файл <имя>.csv.path с полным путём папки.
+    // Из имени CSV путь не восстановить (в нём только имя и хэш), а он нужен, чтобы
+    // показывать в списке графиков и те папки, которые уже убрали из наблюдения.
+    public void rememberPath(Path watchedFolder) throws IOException {
+        Path marker = markerFor(watchedFolder);
+        if (Files.exists(marker)) {
+            return;
+        }
+        Files.writeString(marker, watchedFolder.toAbsolutePath().normalize().toString(),
+                StandardCharsets.UTF_8);
+    }
+
+    // НОВОЕ: все папки, у которых есть история (в том числе убранные из наблюдения)
+    public List<Path> knownFolders() {
+        List<Path> result = new ArrayList<>();
+        try (DirectoryStream<Path> stream = Files.newDirectoryStream(dataDir, "*.csv.path")) {
+            for (Path marker : stream) {
+                try {
+                    Path folder = Path.of(Files.readString(marker, StandardCharsets.UTF_8).trim());
+                    // проверка: файл пути должен соответствовать именно этой папке
+                    if (markerFor(folder).getFileName().equals(marker.getFileName())
+                            && hasHistory(folder)) {
+                        result.add(folder);
+                    }
+                } catch (IOException | RuntimeException e) {
+                    AppLog.warn("Пропущен файл пути " + marker.getFileName() + ": " + e.getMessage());
+                }
+            }
+        } catch (IOException e) {
+            AppLog.warn("Не удалось прочитать список папок в data: " + e.getMessage());
+        }
+        return result;
+    }
+
+    private Path markerFor(Path watchedFolder) {
+        Path csv = fileFor(watchedFolder);
+        return csv.resolveSibling(csv.getFileName() + ".path");
+    }
+
+    // НОВОЕ: читатель, который заменяет битые байты знаком « » вместо ошибки
     private static BufferedReader openReader(Path file) throws IOException {
         return new BufferedReader(
                 new InputStreamReader(Files.newInputStream(file), StandardCharsets.UTF_8));
