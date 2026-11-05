@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package foldermonitor;
 
 /**
@@ -20,6 +16,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.RejectedExecutionException;
@@ -30,13 +27,18 @@ public class Scheduler {
 
     public enum State { WAITING, SCANNING, ERROR, STOPPED }
 
+    // Размер неизвестен: измерений ещё не было (или история пока не прочитана)
+    public static final long NO_SIZE = -1;
+
     // Снимок состояния папки для окна. lastRun == null означает "данных о последнем измерении нет".
-    public record FolderStatus(State state, Instant lastRun, String message) { }
+    // sizeBytes: размер по последнему успешному измерению или NO_SIZE.
+    public record FolderStatus(State state, Instant lastRun, long sizeBytes, String message) { }
 
     // Всё, что планировщик знает об одной папке
     private static class FolderEntry {
         volatile boolean enabled;
         volatile Instant lastRun;            // null = ещё не загружено из CSV; EPOCH = измерений не было
+        volatile long lastSize = NO_SIZE;    // размер корня в последнем измерении (из CSV или из этого запуска)
         volatile State state = State.WAITING;
         volatile String message = "";        // текст последней ошибки
         volatile boolean hadError;           // была ли ошибка (чтобы не повторять её в логе)
@@ -105,17 +107,20 @@ public class Scheduler {
     public FolderStatus getStatus(Path folder) {
         FolderEntry entry = entries.get(normalize(folder));
         if (entry == null) {
-            return new FolderStatus(State.STOPPED, null, "");
+            return new FolderStatus(State.STOPPED, null, NO_SIZE, "");
         }
         Instant last = entry.lastRun;
         if (last != null && last.equals(Instant.EPOCH)) {
             last = null;
         }
         State state = entry.enabled ? entry.state : State.STOPPED;
-        return new FolderStatus(state, last, entry.message);
+        return new FolderStatus(state, last, entry.lastSize, entry.message);
     }
 
     public void start(Duration initialDelay) {
+        // НОВОЕ: сразу прочитать из CSV время и размер последнего измерения для ВСЕХ папок
+        // (в том числе остановленных), чтобы окно не показывало прочерки. Обхода папок тут нет.
+        executor.execute(this::loadAllHistory);
         executor.scheduleWithFixedDelay(
                 this::checkAll, initialDelay.toMillis(), checkPeriod.toMillis(), TimeUnit.MILLISECONDS);
     }
@@ -140,6 +145,19 @@ public class Scheduler {
 
     // ---- всё ниже выполняется в фоновом потоке ----
 
+    private void loadAllHistory() {
+        try {
+            for (Map.Entry<Path, FolderEntry> e : entries.entrySet()) {
+                if (Thread.currentThread().isInterrupted()) {
+                    return;
+                }
+                ensureLoaded(e.getKey(), e.getValue());
+            }
+        } catch (Throwable t) {
+            AppLog.error("Ошибка при чтении истории папок", t);
+        }
+    }
+
     private void checkAll() {
         // Ошибка в задаче по расписанию молча остановила бы все будущие запуски,
         // поэтому всё тело завёрнуто в try/catch.
@@ -155,23 +173,38 @@ public class Scheduler {
         }
     }
 
+    // Один раз после запуска программы: достать из CSV время и размер последнего измерения
+    private void ensureLoaded(Path folder, FolderEntry entry) {
+        if (entry.lastRun != null) {
+            return;
+        }
+        Optional<Measurement> last = loadLast(folder);
+        Instant instant = last
+                .map(m -> m.time().atZone(ZoneId.systemDefault()).toInstant())
+                .orElse(Instant.EPOCH);   // EPOCH = 1970 год = "измерений не было"
+        entry.lastSize = last.map(Measurement::sizeBytes).orElse(NO_SIZE);
+        entry.lastRun = instant;          // последним: по нему другие потоки понимают, что загрузка закончена
+
+        if (last.isEmpty()) {
+            AppLog.info(folder + ": измерений ещё не было");
+        } else if (entry.enabled) {
+            AppLog.info(folder + ": последнее измерение " + format(instant)
+                    + ", следующее не раньше " + format(instant.plus(interval)));
+        } else {
+            AppLog.info(folder + ": последнее измерение " + format(instant) + " (сбор остановлен)");
+        }
+    }
+
     private void checkFolder(Path folder, FolderEntry entry) {
-        // выключена или уже убрана из списка
-        if (!entry.enabled || entries.get(folder) != entry) {
+        if (entries.get(folder) != entry) {   // уже убрана из списка
             return;
         }
         try {
-            Instant last = entry.lastRun;
-            if (last == null) {   // первая проверка этой папки после запуска программы
-                last = loadLastRun(folder);
-                entry.lastRun = last;
-                if (last.equals(Instant.EPOCH)) {
-                    AppLog.info(folder + ": измерений ещё не было");
-                } else {
-                    AppLog.info(folder + ": последнее измерение " + format(last)
-                            + ", следующее не раньше " + format(last.plus(interval)));
-                }
+            ensureLoaded(folder, entry);      // НОВОЕ: и для остановленных папок
+            if (!entry.enabled) {
+                return;
             }
+            Instant last = entry.lastRun;
             if (!isDue(last, Instant.now())) {
                 return;
             }
@@ -189,6 +222,7 @@ public class Scheduler {
                     LocalDateTime.ofInstant(finished, ZoneId.systemDefault())));
 
             boolean recovered = entry.hadError;
+            entry.lastSize = result.total().getSizeBytes();
             entry.lastRun = finished;
             entry.hadError = false;
             entry.message = "";
@@ -213,6 +247,7 @@ public class Scheduler {
 
     // Запомнить ошибку. В лог она попадает один раз (когда появилась или изменилась),
     // а не при каждом повторе. Новая строка в CSV НЕ пишется: никаких нулей.
+    // Размер последнего удачного измерения (lastSize) при этом сохраняется.
     private void fail(Path folder, FolderEntry entry, String text, Throwable cause) {
         boolean changed = !entry.hadError || !text.equals(entry.message);
         entry.hadError = true;
@@ -233,14 +268,12 @@ public class Scheduler {
         return last.isAfter(now) || !now.isBefore(last.plus(interval));
     }
 
-    private Instant loadLastRun(Path folder) {
+    private Optional<Measurement> loadLast(Path folder) {
         try {
-            return storage.lastTime(folder)
-                    .map(t -> t.atZone(ZoneId.systemDefault()).toInstant())
-                    .orElse(Instant.EPOCH);
+            return storage.lastRoot(folder);
         } catch (IOException e) {
             AppLog.warn(folder + ": не удалось прочитать историю: " + e.getMessage());
-            return Instant.EPOCH;
+            return Optional.empty();
         }
     }
 

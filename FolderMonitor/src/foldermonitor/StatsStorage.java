@@ -107,6 +107,7 @@ public class StatsStorage {
         return result;
     }
 
+    // IMPORTANT: lastTime оставь как есть, он больше не используется, но не мешает.
     // НОВОЕ: время последнего измерения (или пусто, если измерений нет).
     // Читает файл потоком и не хранит строки в памяти — подходит для фоновой работы.
     public Optional<LocalDateTime> lastTime(Path watchedFolder) throws IOException {
@@ -136,6 +137,44 @@ public class StatsStorage {
         return Optional.ofNullable(last);
     }
 
+        // НОВОЕ: последнее по времени измерение САМОЙ папки (строка ".": размер, файлы, ...).
+    // Файл читается потоком, в памяти ничего не копится; повреждённые строки пропускаются.
+    public Optional<Measurement> lastRoot(Path watchedFolder) throws IOException {
+        Path file = fileFor(watchedFolder);
+        if (!Files.exists(file)) {
+            return Optional.empty();
+        }
+        Measurement last = null;
+        try (BufferedReader reader = openReader(file)) {
+            reader.readLine();   // заголовок
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (!isRootLine(line)) {
+                    continue;    // строки подпапок разбирать не нужно
+                }
+                try {
+                    Measurement m = parseLine(line);
+                    if (last == null || !m.time().isBefore(last.time())) {
+                        last = m;
+                    }
+                } catch (RuntimeException e) {
+                    // повреждённая строка — пропускаем
+                }
+            }
+        }
+        return Optional.ofNullable(last);
+    }
+
+    // Быстрая проверка без разбора всей строки: второе поле равно "."
+    private static boolean isRootLine(String line) {
+        int first = line.indexOf(SEP);
+        if (first < 0) {
+            return false;
+        }
+        int second = line.indexOf(SEP, first + 1);
+        return second == first + 2 && line.charAt(first + 1) == '.';
+    }
+    
     // НОВОЕ: есть ли у папки хотя бы файл истории
     public boolean hasHistory(Path watchedFolder) {
         try {

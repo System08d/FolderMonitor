@@ -26,7 +26,7 @@ import org.jfree.data.time.TimeSeriesCollection;
 // График 1.1: размер папки (ГБ) по времени. Линия + полупрозрачная заливка под ней.
 public class SizeOverTimeChart implements ChartView {
 
-    private static final double BYTES_IN_GB = 1024.0 * 1024.0 * 1024.0;
+    private static final Locale RU = Locale.forLanguageTag("ru");
     private static final int MAX_POINTS_WITH_MARKERS = 60;
 
     @Override
@@ -57,7 +57,7 @@ public class SizeOverTimeChart implements ChartView {
         TimeSeries series = new TimeSeries("Размер, ГБ");
         for (Measurement m : rows) {
             Date date = Date.from(m.time().atZone(ZoneId.systemDefault()).toInstant());
-            series.addOrUpdate(new Second(date), m.sizeBytes() / BYTES_IN_GB);
+                        series.addOrUpdate(new Second(date), Fmt.gbValue(m.sizeBytes()));
         }
         TimeSeriesCollection dataset = new TimeSeriesCollection(series);
 
@@ -87,7 +87,10 @@ public class SizeOverTimeChart implements ChartView {
         NumberAxis y = (NumberAxis) plot.getRangeAxis();
         y.setAutoRangeIncludesZero(false);
         y.setAutoRangeMinimumSize(0.2);
-        y.setNumberFormatOverride(oneDecimal());
+        // Стандартные деления сами подбирают число знаков после запятой под шаг оси (0,05 → "40,35",
+        // 1 → "40"), поэтому подписи не повторяются. Общий формат в одну цифру тут не подходит:
+        // при узком диапазоне получалось 40,5 40,5 40,5 40,4 ...
+        y.setStandardTickUnits(NumberAxis.createStandardTickUnits(RU));
         y.setLabel("ГБ");
 
         DateAxis x = (DateAxis) plot.getDomainAxis();
@@ -103,6 +106,6 @@ public class SizeOverTimeChart implements ChartView {
 
     // 9,4 с запятой, как на всех экранах
     private static DecimalFormat oneDecimal() {
-        return new DecimalFormat("0.0", DecimalFormatSymbols.getInstance(Locale.forLanguageTag("ru")));
+                return new DecimalFormat("0.0", DecimalFormatSymbols.getInstance(RU));
     }
 }

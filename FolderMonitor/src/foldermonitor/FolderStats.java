@@ -11,7 +11,9 @@ package foldermonitor;
 
 public class FolderStats {
 
-    private static final double BYTES_IN_GB = 1024.0 * 1024.0 * 1024.0;
+        public String getSizeGbText() {
+        return Fmt.gbNumber(sizeBytes);
+    }
 
     private long sizeBytes;
     private long folderCount;
@@ -61,10 +63,6 @@ public class FolderStats {
 
     public long getFileCount() {
         return imageCount + videoCount + otherCount;
-    }
-
-    public String getSizeGbText() {
-        return String.format("%.1f", sizeBytes / BYTES_IN_GB);
     }
 
     @Override

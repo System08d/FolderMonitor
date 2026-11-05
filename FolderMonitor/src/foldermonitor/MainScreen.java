@@ -2,6 +2,8 @@ package foldermonitor;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.FontMetrics;
 import java.awt.FlowLayout;
 import java.awt.event.HierarchyEvent;
 import java.io.IOException;
@@ -26,6 +28,7 @@ import javax.swing.ListCellRenderer;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
 import javax.swing.Timer;
+import javax.swing.ToolTipManager;
 
 // Главный экран: список наблюдаемых папок, управление сбором, интервал, галочки, кнопка графиков.
 // Заменил временные FoldersPanel и прежний MainScreen.
@@ -54,10 +57,13 @@ public class MainScreen extends JPanel {
         // ---------- панель папок ----------
         list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         list.setCellRenderer(new FolderRenderer());
+        list.setBackground(Theme.PANEL);                     // фон не зависит от того, подключился ли FlatLaf
+        ToolTipManager.sharedInstance().registerComponent(list);   // подсказка с полным путём и статусом
         reloadList();
         JScrollPane scroll = new JScrollPane(list);
         scroll.setBorder(BorderFactory.createEmptyBorder());
         scroll.getViewport().setBackground(Theme.PANEL);
+        scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);   // длинный путь обрезается, а не прокручивается
 
         ThemedButton addButton = new ThemedButton("Добавить…");
         ThemedButton removeButton = new ThemedButton("Убрать");
@@ -255,6 +261,11 @@ public class MainScreen extends JPanel {
         };
     }
 
+    // В HTML-подсказке символы & < > нужно экранировать (в путях бывает "&")
+    private static String escape(String text) {
+        return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;");
+    }
+
     // Галочка в цветах темы: прозрачный фон, светлый текст
     private static void styleCheckBox(JCheckBox box) {
         box.setOpaque(false);
@@ -277,29 +288,68 @@ public class MainScreen extends JPanel {
         }
     }
 
-    // Строка списка: путь, ниже статус. Цвет статуса: ошибка красным, идёт сбор — подсвечен,
-    // остановлено — приглушено. Статус берётся в момент отрисовки.
+    // Строка списка: сверху путь (слева) и текущий размер (справа), ниже статус.
+    // Цвет статуса: ошибка красным, идёт сбор — подсвечен, остановлено — приглушено.
+    // Размер берётся из последнего измерения, поэтому он виден и у остановленной папки.
     private class FolderRenderer extends JPanel implements ListCellRenderer<Path> {
         private final JLabel path = new JLabel();
+        private final JLabel size = new JLabel();
         private final JLabel status = new JLabel();
 
         FolderRenderer() {
             super(new BorderLayout(0, 2));
             setBorder(BorderFactory.createEmptyBorder(6, 8, 6, 8));
             path.setFont(Theme.FONT_BOLD);
+            size.setFont(Theme.FONT_BOLD);
             status.setFont(Theme.FONT_SMALL);
-            add(path, BorderLayout.NORTH);
+
+            JPanel head = new JPanel(new BorderLayout(12, 0));
+            head.setOpaque(false);
+            head.add(path, BorderLayout.CENTER);
+            head.add(size, BorderLayout.EAST);
+            add(head, BorderLayout.NORTH);
             add(status, BorderLayout.SOUTH);
+        }
+
+        // Если путь не помещается, обрезаем его СЛЕВА ("…ents/Projects/final"): имя папки важнее начала пути.
+        // Полный путь остаётся в подсказке.
+        private String fitPath(JList<?> l, String text, String sizeText) {
+            if (l.getWidth() <= 0) {
+                return text;
+            }
+            int reserved = 16 + 12 + size.getFontMetrics(size.getFont()).stringWidth(sizeText);   // поля, зазор, размер
+            int available = l.getWidth() - reserved;
+            FontMetrics fm = path.getFontMetrics(path.getFont());
+            if (fm.stringWidth(text) <= available) {
+                return text;
+            }
+            int cut = 1;
+            while (cut < text.length() - 1 && fm.stringWidth("…" + text.substring(cut)) > available) {
+                cut++;
+            }
+            return "…" + text.substring(cut);
+        }
+
+        // Ширину строки определяет окно, а не длина текста: иначе длинный путь растягивает список
+        // и размер справа уезжает за край. Лишнее обрезается многоточием.
+        @Override
+        public Dimension getPreferredSize() {
+            return new Dimension(0, super.getPreferredSize().height);
         }
 
         @Override
         public Component getListCellRendererComponent(JList<? extends Path> l, Path folder,
                 int index, boolean selected, boolean focus) {
             Scheduler.FolderStatus s = controller.getStatus(folder);
-            path.setText(folder.toString());
+            boolean hasSize = s.sizeBytes() >= 0;
+            String sizeText = hasSize ? Fmt.gb(s.sizeBytes()) : "—";
+            size.setText(sizeText);
+            path.setText(fitPath(l, folder.toString(), sizeText));
             status.setText(statusText(s));
+            setToolTipText("<html>" + escape(folder.toString()) + "<br>" + escape(statusText(s)) + "</html>");
             setBackground(selected ? Theme.PANEL_PRESSED : Theme.PANEL);
             path.setForeground(selected ? Theme.ACCENT : Theme.TEXT);
+            size.setForeground(!hasSize ? Theme.TEXT_DIM : (selected ? Theme.ACCENT : Theme.VALUE));
             status.setForeground(switch (s.state()) {
                 case ERROR -> Theme.WARN;
                 case SCANNING -> Theme.VALUE;
