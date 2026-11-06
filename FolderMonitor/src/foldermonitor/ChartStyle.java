@@ -3,11 +3,15 @@ package foldermonitor;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
+import java.text.SimpleDateFormat;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.Axis;
+import org.jfree.chart.axis.DateTickUnit;
+import org.jfree.chart.axis.DateTickUnitType;
+import org.jfree.chart.axis.TickUnits;
 import org.jfree.chart.plot.Plot;
 import org.jfree.chart.plot.XYPlot;
 
@@ -46,6 +50,39 @@ public final class ChartStyle {
         axis.setTickLabelPaint(Theme.TEXT_DIM);
         axis.setAxisLinePaint(Theme.BORDER);
         axis.setTickMarkPaint(Theme.BORDER);
+    }
+
+    // Деления оси времени. У каждого шага свой формат подписи: секундам нужны секунды, дням не нужно
+    // время. JFreeChart сам берёт самый мелкий шаг, при котором подписи не слипаются, и подпись
+    // всегда различает соседние деления. Один общий формат (как раньше) этого не умел и давал
+    // "05.11 16:51" два раза подряд при периоде в пару минут.
+    public static TickUnits dateTickUnits() {
+        SimpleDateFormat seconds = new SimpleDateFormat("HH:mm:ss");
+        SimpleDateFormat minutes = new SimpleDateFormat("dd.MM HH:mm");
+        SimpleDateFormat days = new SimpleDateFormat("dd.MM.yy");
+        SimpleDateFormat months = new SimpleDateFormat("MM.yyyy");
+        SimpleDateFormat years = new SimpleDateFormat("yyyy");
+
+        TickUnits units = new TickUnits();
+        for (int n : new int[] {1, 5, 10, 30}) {
+            units.add(new DateTickUnit(DateTickUnitType.SECOND, n, seconds));
+        }
+        for (int n : new int[] {1, 5, 10, 30}) {
+            units.add(new DateTickUnit(DateTickUnitType.MINUTE, n, minutes));
+        }
+        for (int n : new int[] {1, 3, 6, 12}) {
+            units.add(new DateTickUnit(DateTickUnitType.HOUR, n, minutes));
+        }
+        for (int n : new int[] {1, 2, 7, 14}) {
+            units.add(new DateTickUnit(DateTickUnitType.DAY, n, days));
+        }
+        for (int n : new int[] {1, 3, 6}) {
+            units.add(new DateTickUnit(DateTickUnitType.MONTH, n, months));
+        }
+        for (int n : new int[] {1, 5, 10, 25}) {
+            units.add(new DateTickUnit(DateTickUnitType.YEAR, n, years));
+        }
+        return units;
     }
 
     // Обёртка для показа в окне: без контекстного меню и зума мышью, растягивается на всё место

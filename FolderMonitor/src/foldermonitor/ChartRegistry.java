@@ -7,7 +7,9 @@ import java.util.List;
 public final class ChartRegistry {
 
     private static final List<ChartView> ALL = List.of(
-            new SizeOverTimeChart()
+            new SizeOverTimeChart(),
+            new FileCountChart(),
+            new FolderCountChart()
     );
 
     private ChartRegistry() { }
