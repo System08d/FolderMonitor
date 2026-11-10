@@ -9,7 +9,12 @@ public final class ChartRegistry {
     private static final List<ChartView> ALL = List.of(
             new SizeOverTimeChart(),
             new FileCountChart(),
-            new FolderCountChart()
+            new FolderCountChart(),
+            new FileTypesChart(),
+            new SubfolderSizeChart(),
+            new SubfolderCountChart(),
+            new GrowthIndexChart(),
+            new GrowthSpeedChart()
     );
 
     private ChartRegistry() { }

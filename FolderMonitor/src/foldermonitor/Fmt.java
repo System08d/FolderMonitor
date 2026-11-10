@@ -8,12 +8,12 @@ public final class Fmt {
 
     private static final double BYTES_IN_GB = 1024.0 * 1024.0 * 1024.0;
 
-        // Размер в гигабайтах как число (для осей и рядов графиков). Единственное место с константой ГБ.
+    private Fmt() { }
+
+    // Размер в гигабайтах как число (для осей и рядов графиков). Единственное место с константой ГБ.
     public static double gbValue(long bytes) {
         return bytes / BYTES_IN_GB;
     }
-    
-    private Fmt() { }
 
     // "9,4"
     public static String gbNumber(long bytes) {
@@ -23,6 +23,11 @@ public final class Fmt {
     // "9,4 ГБ"
     public static String gb(long bytes) {
         return gbNumber(bytes) + " ГБ";
+    }
+
+    // Размер, уже выраженный в гигабайтах (сумма долей на диаграмме): "9,4 ГБ"
+    public static String gbText(double gb) {
+        return oneDecimal(gb) + " ГБ";
     }
 
     // "+0,4 ГБ" / "-1,2 ГБ" / "0,0 ГБ" (если после округления получился ноль, знак не пишем)

@@ -3,6 +3,7 @@ package foldermonitor;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Stroke;
 import java.text.SimpleDateFormat;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -13,7 +14,10 @@ import org.jfree.chart.axis.DateTickUnit;
 import org.jfree.chart.axis.DateTickUnitType;
 import org.jfree.chart.axis.TickUnits;
 import org.jfree.chart.plot.Plot;
+import org.jfree.chart.plot.ValueMarker;
 import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.title.LegendTitle;
+import org.jfree.chart.ui.RectangleEdge;
 
 // Единый тёмный стиль всех графиков JFreeChart. Цвета и шрифты берутся из Theme.
 // Любой новый график после создания JFreeChart вызывает apply(chart) и panel(chart).
@@ -102,6 +106,47 @@ public final class ChartStyle {
     // Полупрозрачная версия цвета (для заливки под линией)
     public static Color translucent(Color color, int alpha) {
         return new Color(color.getRed(), color.getGreen(), color.getBlue(), alpha);
+    }
+
+    // Легенда над графиком в общем стиле (для графиков с несколькими линиями)
+    public static void styleLegend(JFreeChart chart) {
+        LegendTitle legend = chart.getLegend();
+        if (legend == null) {
+            return;
+        }
+        legend.setPosition(RectangleEdge.TOP);
+        legend.setBackgroundPaint(Theme.BG);
+        legend.setItemFont(Theme.FONT_NORMAL);
+        legend.setItemPaint(Theme.TEXT);
+    }
+
+    // Пунктирная горизонтальная линия на заданном значении оси (100% у индекса, 0 у скорости)
+    public static void referenceLine(XYPlot plot, double value) {
+        Stroke dashed = new BasicStroke(1f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER,
+                10f, new float[] {4f, 4f}, 0f);
+        plot.addRangeMarker(new ValueMarker(value, Theme.TEXT_DIM, dashed));
+    }
+
+    // Цвета долей на кольцевых диаграммах. Подобраны так, чтобы соседние доли различались
+    // на тёмном фоне; красный не используем, он зарезервирован под отрицательный прирост.
+    private static final Color[] SLICE_COLORS = {
+        Theme.ACCENT,                 // бирюзовый
+        Theme.VALUE,                  // салатовый
+        new Color(0x3FA7E0),          // синий
+        new Color(0xE5A93C),          // янтарный
+        new Color(0x9B7BE8),          // фиолетовый
+        new Color(0xE06FA8),          // розовый
+        new Color(0x5CC8D6),          // голубой
+        new Color(0xC77B4A)           // медный
+    };
+
+    public static Color sliceColor(int index) {
+        return SLICE_COLORS[index % SLICE_COLORS.length];
+    }
+
+    // «Прочее» всегда приглушённого серо-зелёного цвета, чтобы не путалось с именованными долями
+    public static Color otherSliceColor() {
+        return new Color(0x4A6B63);
     }
 
     // Сообщение вместо графика ("нет данных за период" и т.п.)
