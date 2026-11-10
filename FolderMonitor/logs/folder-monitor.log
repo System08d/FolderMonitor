@@ -118,3 +118,367 @@
 2026-10-27 20:30:39 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
 2026-10-27 20:30:39 INFO  C:\Users\oleksandr.dan\Downloads\otro: готово за 152 мс, подходящих подпапок: 2
 2026-10-27 20:31:20 INFO  Выход из программы
+2026-11-10 18:32:28 INFO  === Запуск Folder Monitor [ТЕСТОВЫЙ РЕЖИМ], данные: C:\Users\oleksandr.dan\Documents\NetBeansProjects\FolderMonitor\data, папок в списке: 7 ===
+2026-11-10 18:32:28 INFO  C:\: измерений ещё не было
+2026-11-10 18:32:28 INFO  C:\Users\oleksandr.dan\Documents: измерений ещё не было
+2026-11-10 18:32:28 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: измерений ещё не было
+2026-11-10 18:32:28 INFO  C:\Users\oleksandr.dan\Downloads: последнее измерение 2026-10-16 19:31:03, следующее не раньше 2026-10-16 19:32:03
+2026-11-10 18:32:28 INFO  C:\Users\oleksandr.dan\Downloads\my program: последнее измерение 2026-10-21 16:25:46, следующее не раньше 2026-10-21 16:26:46
+2026-11-10 18:32:28 INFO  C:\Users\oleksandr.dan\Downloads\otro: последнее измерение 2026-10-21 16:25:26, следующее не раньше 2026-10-21 16:26:26
+2026-11-10 18:32:28 INFO  C:\Windows: измерений ещё не было
+2026-11-10 18:32:28 INFO  C:\: начат сбор
+2026-11-10 18:32:37 INFO  C:\: готово за 9209 мс, подходящих подпапок: 9, пропущено (нет доступа): 464
+2026-11-10 18:32:37 INFO  C:\Users\oleksandr.dan\Documents: начат сбор
+2026-11-10 18:32:37 INFO  C:\Users\oleksandr.dan\Documents: готово за 6 мс, подходящих подпапок: 0, пропущено (нет доступа): 3
+2026-11-10 18:32:37 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: начат сбор
+2026-11-10 18:32:37 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: готово за 3 мс, подходящих подпапок: 0
+2026-11-10 18:32:37 INFO  C:\Users\oleksandr.dan\Downloads: начат сбор
+2026-11-10 18:32:37 INFO  C:\Users\oleksandr.dan\Downloads: готово за 182 мс, подходящих подпапок: 2
+2026-11-10 18:32:37 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-11-10 18:32:37 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 8 мс, подходящих подпапок: 2
+2026-11-10 18:32:37 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-11-10 18:32:38 INFO  C:\Users\oleksandr.dan\Downloads\otro: готово за 157 мс, подходящих подпапок: 2
+2026-11-10 18:32:38 INFO  C:\Windows: начат сбор
+2026-11-10 18:32:45 INFO  C:\Windows: готово за 7674 мс, подходящих подпапок: 16, пропущено (нет доступа): 65
+2026-11-10 18:40:13 INFO  === Запуск Folder Monitor [ТЕСТОВЫЙ РЕЖИМ], данные: C:\Users\oleksandr.dan\Documents\NetBeansProjects\FolderMonitor\data, папок в списке: 7 ===
+2026-11-10 18:40:14 INFO  C:\: последнее измерение 2026-11-10 18:38:52, следующее не раньше 2026-11-10 18:39:52
+2026-11-10 18:40:14 INFO  C:\Users\oleksandr.dan\Documents: последнее измерение 2026-11-10 18:38:52, следующее не раньше 2026-11-10 18:39:52
+2026-11-10 18:40:14 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: последнее измерение 2026-11-10 18:38:52, следующее не раньше 2026-11-10 18:39:52
+2026-11-10 18:40:14 INFO  C:\Users\oleksandr.dan\Downloads: последнее измерение 2026-11-10 18:38:53, следующее не раньше 2026-11-10 18:39:53
+2026-11-10 18:40:14 INFO  C:\Users\oleksandr.dan\Downloads\my program: последнее измерение 2026-11-10 18:38:53, следующее не раньше 2026-11-10 18:39:53
+2026-11-10 18:40:14 INFO  C:\Users\oleksandr.dan\Downloads\otro: последнее измерение 2026-11-10 18:38:53, следующее не раньше 2026-11-10 18:39:53
+2026-11-10 18:40:14 INFO  C:\Windows: последнее измерение 2026-11-10 18:39:11, следующее не раньше 2026-11-10 18:40:11
+2026-11-10 18:40:14 INFO  C:\: начат сбор
+2026-11-10 18:40:23 INFO  C:\: готово за 9574 мс, подходящих подпапок: 9, пропущено (нет доступа): 464
+2026-11-10 18:40:23 INFO  C:\Users\oleksandr.dan\Documents: начат сбор
+2026-11-10 18:40:23 INFO  C:\Users\oleksandr.dan\Documents: готово за 5 мс, подходящих подпапок: 0, пропущено (нет доступа): 3
+2026-11-10 18:40:23 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: начат сбор
+2026-11-10 18:40:23 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: готово за 3 мс, подходящих подпапок: 0
+2026-11-10 18:40:23 INFO  C:\Users\oleksandr.dan\Downloads: начат сбор
+2026-11-10 18:40:23 INFO  C:\Users\oleksandr.dan\Downloads: готово за 195 мс, подходящих подпапок: 2
+2026-11-10 18:40:23 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-11-10 18:40:23 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 8 мс, подходящих подпапок: 2
+2026-11-10 18:40:23 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-11-10 18:40:24 INFO  C:\Users\oleksandr.dan\Downloads\otro: готово за 158 мс, подходящих подпапок: 2
+2026-11-10 18:40:24 INFO  C:\Windows: начат сбор
+2026-11-10 18:40:31 INFO  C:\Windows: готово за 7794 мс, подходящих подпапок: 16, пропущено (нет доступа): 65
+2026-11-10 18:41:31 INFO  C:\: начат сбор
+2026-11-10 18:41:40 INFO  C:\: готово за 8828 мс, подходящих подпапок: 9, пропущено (нет доступа): 464
+2026-11-10 18:41:40 INFO  C:\Users\oleksandr.dan\Documents: начат сбор
+2026-11-10 18:41:40 INFO  C:\Users\oleksandr.dan\Documents: готово за 3 мс, подходящих подпапок: 0, пропущено (нет доступа): 3
+2026-11-10 18:41:40 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: начат сбор
+2026-11-10 18:41:40 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: готово за 2 мс, подходящих подпапок: 0
+2026-11-10 18:41:40 INFO  C:\Users\oleksandr.dan\Downloads: начат сбор
+2026-11-10 18:41:40 INFO  C:\Users\oleksandr.dan\Downloads: готово за 159 мс, подходящих подпапок: 2
+2026-11-10 18:41:40 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-11-10 18:41:40 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 6 мс, подходящих подпапок: 2
+2026-11-10 18:41:40 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-11-10 18:41:41 INFO  C:\Users\oleksandr.dan\Downloads\otro: готово за 133 мс, подходящих подпапок: 2
+2026-11-10 18:41:41 INFO  C:\Windows: начат сбор
+2026-11-10 18:41:48 INFO  C:\Windows: готово за 7498 мс, подходящих подпапок: 16, пропущено (нет доступа): 65
+2026-11-10 18:42:48 INFO  C:\: начат сбор
+2026-11-10 18:42:57 INFO  C:\: готово за 8750 мс, подходящих подпапок: 9, пропущено (нет доступа): 464
+2026-11-10 18:42:57 INFO  C:\Users\oleksandr.dan\Documents: начат сбор
+2026-11-10 18:42:57 INFO  C:\Users\oleksandr.dan\Documents: готово за 5 мс, подходящих подпапок: 0, пропущено (нет доступа): 3
+2026-11-10 18:42:57 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: начат сбор
+2026-11-10 18:42:57 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: готово за 3 мс, подходящих подпапок: 0
+2026-11-10 18:42:57 INFO  C:\Users\oleksandr.dan\Downloads: начат сбор
+2026-11-10 18:42:57 INFO  C:\Users\oleksandr.dan\Downloads: готово за 171 мс, подходящих подпапок: 2
+2026-11-10 18:42:57 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-11-10 18:42:57 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 8 мс, подходящих подпапок: 2
+2026-11-10 18:42:57 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-11-10 18:42:57 INFO  C:\Users\oleksandr.dan\Downloads\otro: готово за 146 мс, подходящих подпапок: 2
+2026-11-10 18:42:57 INFO  C:\Windows: начат сбор
+2026-11-10 18:43:05 INFO  C:\Windows: готово за 7733 мс, подходящих подпапок: 16, пропущено (нет доступа): 65
+2026-11-10 18:44:05 INFO  C:\: начат сбор
+2026-11-10 18:44:16 INFO  C:\: готово за 10636 мс, подходящих подпапок: 9, пропущено (нет доступа): 464
+2026-11-10 18:44:16 INFO  C:\Users\oleksandr.dan\Documents: начат сбор
+2026-11-10 18:44:16 INFO  C:\Users\oleksandr.dan\Documents: готово за 3 мс, подходящих подпапок: 0, пропущено (нет доступа): 3
+2026-11-10 18:44:16 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: начат сбор
+2026-11-10 18:44:16 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: готово за 3 мс, подходящих подпапок: 0
+2026-11-10 18:44:16 INFO  C:\Users\oleksandr.dan\Downloads: начат сбор
+2026-11-10 18:44:16 INFO  C:\Users\oleksandr.dan\Downloads: готово за 162 мс, подходящих подпапок: 2
+2026-11-10 18:44:16 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-11-10 18:44:16 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 7 мс, подходящих подпапок: 2
+2026-11-10 18:44:16 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-11-10 18:44:16 INFO  C:\Users\oleksandr.dan\Downloads\otro: готово за 144 мс, подходящих подпапок: 2
+2026-11-10 18:44:16 INFO  C:\Windows: начат сбор
+2026-11-10 18:44:24 INFO  C:\Windows: готово за 7779 мс, подходящих подпапок: 16, пропущено (нет доступа): 65
+2026-11-10 18:45:24 INFO  C:\: начат сбор
+2026-11-10 18:45:33 INFO  C:\: готово за 9039 мс, подходящих подпапок: 9, пропущено (нет доступа): 464
+2026-11-10 18:45:33 INFO  C:\Users\oleksandr.dan\Documents: начат сбор
+2026-11-10 18:45:33 INFO  C:\Users\oleksandr.dan\Documents: готово за 4 мс, подходящих подпапок: 0, пропущено (нет доступа): 3
+2026-11-10 18:45:33 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: начат сбор
+2026-11-10 18:45:33 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: готово за 3 мс, подходящих подпапок: 0
+2026-11-10 18:45:33 INFO  C:\Users\oleksandr.dan\Downloads: начат сбор
+2026-11-10 18:45:33 INFO  C:\Users\oleksandr.dan\Downloads: готово за 170 мс, подходящих подпапок: 2
+2026-11-10 18:45:33 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-11-10 18:45:33 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 8 мс, подходящих подпапок: 2
+2026-11-10 18:45:33 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-11-10 18:45:33 INFO  C:\Users\oleksandr.dan\Downloads\otro: готово за 136 мс, подходящих подпапок: 2
+2026-11-10 18:45:33 INFO  C:\Windows: начат сбор
+2026-11-10 18:45:41 INFO  C:\Windows: готово за 7678 мс, подходящих подпапок: 16, пропущено (нет доступа): 65
+2026-11-10 18:46:38 INFO  Выход из программы
+2026-11-10 18:50:45 INFO  === Запуск Folder Monitor [ТЕСТОВЫЙ РЕЖИМ], данные: C:\Users\oleksandr.dan\Documents\NetBeansProjects\FolderMonitor\data, папок в списке: 7 ===
+2026-11-10 18:50:45 INFO  C:\: последнее измерение 2026-11-10 18:45:33, следующее не раньше 2026-11-10 18:46:33
+2026-11-10 18:50:45 INFO  C:\Users\oleksandr.dan\Documents: последнее измерение 2026-11-10 18:45:33, следующее не раньше 2026-11-10 18:46:33
+2026-11-10 18:50:45 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: последнее измерение 2026-11-10 18:45:33, следующее не раньше 2026-11-10 18:46:33
+2026-11-10 18:50:45 INFO  C:\Users\oleksandr.dan\Downloads: последнее измерение 2026-11-10 18:45:33, следующее не раньше 2026-11-10 18:46:33
+2026-11-10 18:50:45 INFO  C:\Users\oleksandr.dan\Downloads\my program: последнее измерение 2026-11-10 18:45:33, следующее не раньше 2026-11-10 18:46:33
+2026-11-10 18:50:45 INFO  C:\Users\oleksandr.dan\Downloads\otro: последнее измерение 2026-11-10 18:45:33, следующее не раньше 2026-11-10 18:46:33
+2026-11-10 18:50:45 INFO  C:\Windows: последнее измерение 2026-11-10 18:45:41, следующее не раньше 2026-11-10 18:46:41
+2026-11-10 18:50:45 INFO  C:\: начат сбор
+2026-11-10 18:50:54 INFO  C:\: готово за 9351 мс, подходящих подпапок: 9, пропущено (нет доступа): 464
+2026-11-10 18:50:54 INFO  C:\Users\oleksandr.dan\Documents: начат сбор
+2026-11-10 18:50:54 INFO  C:\Users\oleksandr.dan\Documents: готово за 7 мс, подходящих подпапок: 0, пропущено (нет доступа): 3
+2026-11-10 18:50:54 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: начат сбор
+2026-11-10 18:50:54 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: готово за 3 мс, подходящих подпапок: 0
+2026-11-10 18:50:54 INFO  C:\Users\oleksandr.dan\Downloads: начат сбор
+2026-11-10 18:50:55 INFO  C:\Users\oleksandr.dan\Downloads: готово за 258 мс, подходящих подпапок: 2
+2026-11-10 18:50:55 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-11-10 18:50:55 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 13 мс, подходящих подпапок: 2
+2026-11-10 18:50:55 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-11-10 18:50:55 INFO  C:\Users\oleksandr.dan\Downloads\otro: готово за 172 мс, подходящих подпапок: 2
+2026-11-10 18:50:55 INFO  C:\Windows: начат сбор
+2026-11-10 18:51:02 INFO  C:\Windows: готово за 7731 мс, подходящих подпапок: 16, пропущено (нет доступа): 65
+2026-11-10 18:52:03 INFO  C:\: начат сбор
+2026-11-10 18:52:12 INFO  C:\: готово за 9156 мс, подходящих подпапок: 9, пропущено (нет доступа): 464
+2026-11-10 18:52:12 INFO  C:\Users\oleksandr.dan\Documents: начат сбор
+2026-11-10 18:52:12 INFO  C:\Users\oleksandr.dan\Documents: готово за 5 мс, подходящих подпапок: 0, пропущено (нет доступа): 3
+2026-11-10 18:52:12 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: начат сбор
+2026-11-10 18:52:12 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: готово за 3 мс, подходящих подпапок: 0
+2026-11-10 18:52:12 INFO  C:\Users\oleksandr.dan\Downloads: начат сбор
+2026-11-10 18:52:13 INFO  C:\Users\oleksandr.dan\Downloads: готово за 171 мс, подходящих подпапок: 2
+2026-11-10 18:52:13 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-11-10 18:52:13 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 7 мс, подходящих подпапок: 2
+2026-11-10 18:52:13 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-11-10 18:52:13 INFO  C:\Users\oleksandr.dan\Downloads\otro: готово за 159 мс, подходящих подпапок: 2
+2026-11-10 18:52:13 INFO  C:\Windows: начат сбор
+2026-11-10 18:52:20 INFO  C:\Windows: готово за 7284 мс, подходящих подпапок: 16, пропущено (нет доступа): 65
+2026-11-10 18:53:20 INFO  C:\: начат сбор
+2026-11-10 18:53:29 INFO  C:\: готово за 9237 мс, подходящих подпапок: 9, пропущено (нет доступа): 464
+2026-11-10 18:53:29 INFO  C:\Users\oleksandr.dan\Documents: начат сбор
+2026-11-10 18:53:29 INFO  C:\Users\oleksandr.dan\Documents: готово за 4 мс, подходящих подпапок: 0, пропущено (нет доступа): 3
+2026-11-10 18:53:29 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: начат сбор
+2026-11-10 18:53:29 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: готово за 2 мс, подходящих подпапок: 0
+2026-11-10 18:53:29 INFO  C:\Users\oleksandr.dan\Downloads: начат сбор
+2026-11-10 18:53:30 INFO  C:\Users\oleksandr.dan\Downloads: готово за 149 мс, подходящих подпапок: 2
+2026-11-10 18:53:30 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-11-10 18:53:30 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 6 мс, подходящих подпапок: 2
+2026-11-10 18:53:30 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-11-10 18:53:30 INFO  C:\Users\oleksandr.dan\Downloads\otro: готово за 147 мс, подходящих подпапок: 2
+2026-11-10 18:53:30 INFO  C:\Windows: начат сбор
+2026-11-10 18:53:37 INFO  C:\Windows: готово за 7575 мс, подходящих подпапок: 16, пропущено (нет доступа): 65
+2026-11-10 18:54:37 INFO  C:\: начат сбор
+2026-11-10 18:54:46 INFO  C:\: готово за 8996 мс, подходящих подпапок: 9, пропущено (нет доступа): 464
+2026-11-10 18:54:46 INFO  C:\Users\oleksandr.dan\Documents: начат сбор
+2026-11-10 18:54:46 INFO  C:\Users\oleksandr.dan\Documents: готово за 4 мс, подходящих подпапок: 0, пропущено (нет доступа): 3
+2026-11-10 18:54:46 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: начат сбор
+2026-11-10 18:54:46 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: готово за 3 мс, подходящих подпапок: 0
+2026-11-10 18:54:46 INFO  C:\Users\oleksandr.dan\Downloads: начат сбор
+2026-11-10 18:54:47 INFO  C:\Users\oleksandr.dan\Downloads: готово за 211 мс, подходящих подпапок: 2
+2026-11-10 18:54:47 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-11-10 18:54:47 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 8 мс, подходящих подпапок: 2
+2026-11-10 18:54:47 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-11-10 18:54:47 INFO  C:\Users\oleksandr.dan\Downloads\otro: готово за 162 мс, подходящих подпапок: 2
+2026-11-10 18:54:47 INFO  C:\Windows: начат сбор
+2026-11-10 18:54:54 INFO  C:\Windows: готово за 7739 мс, подходящих подпапок: 16, пропущено (нет доступа): 65
+2026-11-10 18:55:54 INFO  C:\: начат сбор
+2026-11-10 18:56:03 INFO  C:\: готово за 8802 мс, подходящих подпапок: 9, пропущено (нет доступа): 464
+2026-11-10 18:56:03 INFO  C:\Users\oleksandr.dan\Documents: начат сбор
+2026-11-10 18:56:03 INFO  C:\Users\oleksandr.dan\Documents: готово за 3 мс, подходящих подпапок: 0, пропущено (нет доступа): 3
+2026-11-10 18:56:03 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: начат сбор
+2026-11-10 18:56:03 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: готово за 2 мс, подходящих подпапок: 0
+2026-11-10 18:56:03 INFO  C:\Users\oleksandr.dan\Downloads: начат сбор
+2026-11-10 18:56:03 INFO  C:\Users\oleksandr.dan\Downloads: готово за 161 мс, подходящих подпапок: 2
+2026-11-10 18:56:03 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-11-10 18:56:03 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 7 мс, подходящих подпапок: 2
+2026-11-10 18:56:03 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-11-10 18:56:04 INFO  C:\Users\oleksandr.dan\Downloads\otro: готово за 139 мс, подходящих подпапок: 2
+2026-11-10 18:56:04 INFO  C:\Windows: начат сбор
+2026-11-10 18:56:11 INFO  C:\Windows: готово за 7465 мс, подходящих подпапок: 16, пропущено (нет доступа): 65
+2026-11-10 18:57:11 INFO  C:\: начат сбор
+2026-11-10 18:57:20 INFO  C:\: готово за 8684 мс, подходящих подпапок: 9, пропущено (нет доступа): 464
+2026-11-10 18:57:20 INFO  C:\Users\oleksandr.dan\Documents: начат сбор
+2026-11-10 18:57:20 INFO  C:\Users\oleksandr.dan\Documents: готово за 3 мс, подходящих подпапок: 0, пропущено (нет доступа): 3
+2026-11-10 18:57:20 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: начат сбор
+2026-11-10 18:57:20 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: готово за 2 мс, подходящих подпапок: 0
+2026-11-10 18:57:20 INFO  C:\Users\oleksandr.dan\Downloads: начат сбор
+2026-11-10 18:57:20 INFO  C:\Users\oleksandr.dan\Downloads: готово за 167 мс, подходящих подпапок: 2
+2026-11-10 18:57:20 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-11-10 18:57:20 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 7 мс, подходящих подпапок: 2
+2026-11-10 18:57:20 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-11-10 18:57:20 INFO  C:\Users\oleksandr.dan\Downloads\otro: готово за 153 мс, подходящих подпапок: 2
+2026-11-10 18:57:20 INFO  C:\Windows: начат сбор
+2026-11-10 18:57:28 INFO  C:\Windows: готово за 7348 мс, подходящих подпапок: 16, пропущено (нет доступа): 65
+2026-11-10 18:58:15 INFO  Добавлена папка: C:\Users\oleksandr.dan\Documents\VSCode
+2026-11-10 18:58:15 INFO  C:\Users\oleksandr.dan\Documents\VSCode: измерений ещё не было
+2026-11-10 18:58:15 INFO  C:\Users\oleksandr.dan\Documents\VSCode: начат сбор
+2026-11-10 18:58:15 INFO  C:\Users\oleksandr.dan\Documents\VSCode: готово за 2 мс, подходящих подпапок: 0
+2026-11-10 18:58:17 INFO  Сбор запущен: C:\Users\oleksandr.dan\Documents\VSCode
+2026-11-10 18:58:17 INFO  Сбор остановлен: C:\Users\oleksandr.dan\Documents\VSCode
+2026-11-10 18:58:28 INFO  C:\: начат сбор
+2026-11-10 18:58:38 INFO  C:\: готово за 10106 мс, подходящих подпапок: 9, пропущено (нет доступа): 464
+2026-11-10 18:58:38 INFO  C:\Users\oleksandr.dan\Documents: начат сбор
+2026-11-10 18:58:38 INFO  C:\Users\oleksandr.dan\Documents: готово за 4 мс, подходящих подпапок: 0, пропущено (нет доступа): 3
+2026-11-10 18:58:38 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: начат сбор
+2026-11-10 18:58:38 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: готово за 2 мс, подходящих подпапок: 0
+2026-11-10 18:58:38 INFO  C:\Users\oleksandr.dan\Downloads: начат сбор
+2026-11-10 18:58:38 INFO  C:\Users\oleksandr.dan\Downloads: готово за 171 мс, подходящих подпапок: 2
+2026-11-10 18:58:38 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-11-10 18:58:38 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 7 мс, подходящих подпапок: 2
+2026-11-10 18:58:38 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-11-10 18:58:38 INFO  C:\Users\oleksandr.dan\Downloads\otro: готово за 156 мс, подходящих подпапок: 2
+2026-11-10 18:58:38 INFO  C:\Windows: начат сбор
+2026-11-10 18:58:46 INFO  C:\Windows: готово за 7784 мс, подходящих подпапок: 16, пропущено (нет доступа): 65
+2026-11-10 18:59:46 INFO  C:\: начат сбор
+2026-11-10 18:59:55 INFO  C:\: готово за 8939 мс, подходящих подпапок: 9, пропущено (нет доступа): 464
+2026-11-10 18:59:55 INFO  C:\Users\oleksandr.dan\Documents: начат сбор
+2026-11-10 18:59:55 INFO  C:\Users\oleksandr.dan\Documents: готово за 11 мс, подходящих подпапок: 0, пропущено (нет доступа): 3
+2026-11-10 18:59:55 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: начат сбор
+2026-11-10 18:59:55 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: готово за 7 мс, подходящих подпапок: 0
+2026-11-10 18:59:55 INFO  C:\Users\oleksandr.dan\Downloads: начат сбор
+2026-11-10 18:59:55 INFO  C:\Users\oleksandr.dan\Downloads: готово за 154 мс, подходящих подпапок: 2
+2026-11-10 18:59:55 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-11-10 18:59:55 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 6 мс, подходящих подпапок: 2
+2026-11-10 18:59:55 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-11-10 18:59:55 INFO  C:\Users\oleksandr.dan\Downloads\otro: готово за 148 мс, подходящих подпапок: 2
+2026-11-10 18:59:55 INFO  C:\Windows: начат сбор
+2026-11-10 19:00:03 INFO  C:\Windows: готово за 7553 мс, подходящих подпапок: 16, пропущено (нет доступа): 65
+2026-11-10 19:01:03 INFO  C:\: начат сбор
+2026-11-10 19:01:12 INFO  C:\: готово за 8825 мс, подходящих подпапок: 9, пропущено (нет доступа): 464
+2026-11-10 19:01:12 INFO  C:\Users\oleksandr.dan\Documents: начат сбор
+2026-11-10 19:01:12 INFO  C:\Users\oleksandr.dan\Documents: готово за 3 мс, подходящих подпапок: 0, пропущено (нет доступа): 3
+2026-11-10 19:01:12 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: начат сбор
+2026-11-10 19:01:12 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: готово за 2 мс, подходящих подпапок: 0
+2026-11-10 19:01:12 INFO  C:\Users\oleksandr.dan\Downloads: начат сбор
+2026-11-10 19:01:12 INFO  C:\Users\oleksandr.dan\Downloads: готово за 182 мс, подходящих подпапок: 2
+2026-11-10 19:01:12 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-11-10 19:01:12 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 10 мс, подходящих подпапок: 2
+2026-11-10 19:01:12 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-11-10 19:01:12 INFO  C:\Users\oleksandr.dan\Downloads\otro: готово за 150 мс, подходящих подпапок: 2
+2026-11-10 19:01:12 INFO  C:\Windows: начат сбор
+2026-11-10 19:01:19 INFO  C:\Windows: готово за 7469 мс, подходящих подпапок: 16, пропущено (нет доступа): 65
+2026-11-10 19:01:53 INFO  Выход из программы
+2026-11-10 19:26:51 INFO  === Запуск Folder Monitor [ТЕСТОВЫЙ РЕЖИМ], данные: C:\Users\oleksandr.dan\Documents\NetBeansProjects\FolderMonitor\data, папок в списке: 8 ===
+2026-11-10 19:26:51 INFO  C:\: последнее измерение 2026-11-10 19:01:12, следующее не раньше 2026-11-10 19:02:12
+2026-11-10 19:26:51 INFO  C:\Users\oleksandr.dan\Documents: последнее измерение 2026-11-10 19:01:12, следующее не раньше 2026-11-10 19:02:12
+2026-11-10 19:26:51 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: последнее измерение 2026-11-10 19:01:12, следующее не раньше 2026-11-10 19:02:12
+2026-11-10 19:26:51 INFO  C:\Users\oleksandr.dan\Documents\VSCode: последнее измерение 2026-11-10 18:58:15 (сбор остановлен)
+2026-11-10 19:26:51 INFO  C:\Users\oleksandr.dan\Downloads: последнее измерение 2026-11-10 19:01:12, следующее не раньше 2026-11-10 19:02:12
+2026-11-10 19:26:51 INFO  C:\Users\oleksandr.dan\Downloads\my program: последнее измерение 2026-11-10 19:01:12, следующее не раньше 2026-11-10 19:02:12
+2026-11-10 19:26:51 INFO  C:\Users\oleksandr.dan\Downloads\otro: последнее измерение 2026-11-10 19:01:12, следующее не раньше 2026-11-10 19:02:12
+2026-11-10 19:26:51 INFO  C:\Windows: последнее измерение 2026-11-10 19:01:19, следующее не раньше 2026-11-10 19:02:19
+2026-11-10 19:26:51 INFO  C:\: начат сбор
+2026-11-10 19:27:00 INFO  C:\: готово за 9360 мс, подходящих подпапок: 9, пропущено (нет доступа): 465
+2026-11-10 19:27:00 INFO  C:\Users\oleksandr.dan\Documents: начат сбор
+2026-11-10 19:27:00 INFO  C:\Users\oleksandr.dan\Documents: готово за 4 мс, подходящих подпапок: 0, пропущено (нет доступа): 3
+2026-11-10 19:27:00 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: начат сбор
+2026-11-10 19:27:00 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: готово за 3 мс, подходящих подпапок: 0
+2026-11-10 19:27:00 INFO  C:\Users\oleksandr.dan\Downloads: начат сбор
+2026-11-10 19:27:01 INFO  C:\Users\oleksandr.dan\Downloads: готово за 170 мс, подходящих подпапок: 2
+2026-11-10 19:27:01 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-11-10 19:27:01 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 7 мс, подходящих подпапок: 2
+2026-11-10 19:27:01 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-11-10 19:27:01 INFO  C:\Users\oleksandr.dan\Downloads\otro: готово за 155 мс, подходящих подпапок: 2
+2026-11-10 19:27:01 INFO  C:\Windows: начат сбор
+2026-11-10 19:27:08 INFO  C:\Windows: готово за 7464 мс, подходящих подпапок: 16, пропущено (нет доступа): 65
+2026-11-10 19:28:08 INFO  C:\: начат сбор
+2026-11-10 19:28:17 INFO  C:\: готово за 8913 мс, подходящих подпапок: 9, пропущено (нет доступа): 465
+2026-11-10 19:28:17 INFO  C:\Users\oleksandr.dan\Documents: начат сбор
+2026-11-10 19:28:17 INFO  C:\Users\oleksandr.dan\Documents: готово за 3 мс, подходящих подпапок: 0, пропущено (нет доступа): 3
+2026-11-10 19:28:17 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: начат сбор
+2026-11-10 19:28:17 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: готово за 3 мс, подходящих подпапок: 0
+2026-11-10 19:28:17 INFO  C:\Users\oleksandr.dan\Downloads: начат сбор
+2026-11-10 19:28:17 INFO  C:\Users\oleksandr.dan\Downloads: готово за 156 мс, подходящих подпапок: 2
+2026-11-10 19:28:17 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-11-10 19:28:17 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 6 мс, подходящих подпапок: 2
+2026-11-10 19:28:17 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-11-10 19:28:17 INFO  C:\Users\oleksandr.dan\Downloads\otro: готово за 154 мс, подходящих подпапок: 2
+2026-11-10 19:28:17 INFO  C:\Windows: начат сбор
+2026-11-10 19:28:25 INFO  C:\Windows: готово за 7725 мс, подходящих подпапок: 16, пропущено (нет доступа): 65
+2026-11-10 19:29:25 INFO  C:\: начат сбор
+2026-11-10 19:29:34 INFO  C:\: готово за 8745 мс, подходящих подпапок: 9, пропущено (нет доступа): 465
+2026-11-10 19:29:34 INFO  C:\Users\oleksandr.dan\Documents: начат сбор
+2026-11-10 19:29:34 INFO  C:\Users\oleksandr.dan\Documents: готово за 4 мс, подходящих подпапок: 0, пропущено (нет доступа): 3
+2026-11-10 19:29:34 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: начат сбор
+2026-11-10 19:29:34 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: готово за 6 мс, подходящих подпапок: 0
+2026-11-10 19:29:34 INFO  C:\Users\oleksandr.dan\Downloads: начат сбор
+2026-11-10 19:29:34 INFO  C:\Users\oleksandr.dan\Downloads: готово за 154 мс, подходящих подпапок: 2
+2026-11-10 19:29:34 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-11-10 19:29:34 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 6 мс, подходящих подпапок: 2
+2026-11-10 19:29:34 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-11-10 19:29:34 INFO  C:\Users\oleksandr.dan\Downloads\otro: готово за 147 мс, подходящих подпапок: 2
+2026-11-10 19:29:34 INFO  C:\Windows: начат сбор
+2026-11-10 19:29:42 INFO  C:\Windows: готово за 7446 мс, подходящих подпапок: 16, пропущено (нет доступа): 65
+2026-11-10 19:30:42 INFO  C:\: начат сбор
+2026-11-10 19:30:52 INFO  C:\: готово за 10345 мс, подходящих подпапок: 9, пропущено (нет доступа): 465
+2026-11-10 19:30:52 INFO  C:\Users\oleksandr.dan\Documents: начат сбор
+2026-11-10 19:30:52 INFO  C:\Users\oleksandr.dan\Documents: готово за 4 мс, подходящих подпапок: 0, пропущено (нет доступа): 3
+2026-11-10 19:30:52 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: начат сбор
+2026-11-10 19:30:52 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: готово за 3 мс, подходящих подпапок: 0
+2026-11-10 19:30:52 INFO  C:\Users\oleksandr.dan\Downloads: начат сбор
+2026-11-10 19:30:52 INFO  C:\Users\oleksandr.dan\Downloads: готово за 226 мс, подходящих подпапок: 2
+2026-11-10 19:30:52 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-11-10 19:30:52 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 11 мс, подходящих подпапок: 2
+2026-11-10 19:30:52 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-11-10 19:30:53 INFO  C:\Users\oleksandr.dan\Downloads\otro: готово за 230 мс, подходящих подпапок: 2
+2026-11-10 19:30:53 INFO  C:\Windows: начат сбор
+2026-11-10 19:31:01 INFO  C:\Windows: готово за 8747 мс, подходящих подпапок: 16, пропущено (нет доступа): 65
+2026-11-10 19:32:01 INFO  C:\: начат сбор
+2026-11-10 19:32:10 INFO  C:\: готово за 8583 мс, подходящих подпапок: 9, пропущено (нет доступа): 465
+2026-11-10 19:32:10 INFO  C:\Users\oleksandr.dan\Documents: начат сбор
+2026-11-10 19:32:10 INFO  C:\Users\oleksandr.dan\Documents: готово за 3 мс, подходящих подпапок: 0, пропущено (нет доступа): 3
+2026-11-10 19:32:10 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: начат сбор
+2026-11-10 19:32:10 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: готово за 2 мс, подходящих подпапок: 0
+2026-11-10 19:32:10 INFO  C:\Users\oleksandr.dan\Downloads: начат сбор
+2026-11-10 19:32:10 INFO  C:\Users\oleksandr.dan\Downloads: готово за 153 мс, подходящих подпапок: 2
+2026-11-10 19:32:10 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-11-10 19:32:10 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 6 мс, подходящих подпапок: 2
+2026-11-10 19:32:10 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-11-10 19:32:10 INFO  C:\Users\oleksandr.dan\Downloads\otro: готово за 149 мс, подходящих подпапок: 2
+2026-11-10 19:32:10 INFO  C:\Windows: начат сбор
+2026-11-10 19:32:18 INFO  C:\Windows: готово за 7531 мс, подходящих подпапок: 16, пропущено (нет доступа): 65
+2026-11-10 19:33:18 INFO  C:\: начат сбор
+2026-11-10 19:33:27 INFO  C:\: готово за 8747 мс, подходящих подпапок: 9, пропущено (нет доступа): 465
+2026-11-10 19:33:27 INFO  C:\Users\oleksandr.dan\Documents: начат сбор
+2026-11-10 19:33:27 INFO  C:\Users\oleksandr.dan\Documents: готово за 3 мс, подходящих подпапок: 0, пропущено (нет доступа): 3
+2026-11-10 19:33:27 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: начат сбор
+2026-11-10 19:33:27 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: готово за 2 мс, подходящих подпапок: 0
+2026-11-10 19:33:27 INFO  C:\Users\oleksandr.dan\Downloads: начат сбор
+2026-11-10 19:33:27 INFO  C:\Users\oleksandr.dan\Downloads: готово за 152 мс, подходящих подпапок: 2
+2026-11-10 19:33:27 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-11-10 19:33:27 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 6 мс, подходящих подпапок: 2
+2026-11-10 19:33:27 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-11-10 19:33:27 INFO  C:\Users\oleksandr.dan\Downloads\otro: готово за 149 мс, подходящих подпапок: 2
+2026-11-10 19:33:27 INFO  C:\Windows: начат сбор
+2026-11-10 19:33:34 INFO  C:\Windows: готово за 7344 мс, подходящих подпапок: 16, пропущено (нет доступа): 65
+2026-11-10 19:34:34 INFO  C:\: начат сбор
+2026-11-10 19:34:44 INFO  C:\: готово за 9278 мс, подходящих подпапок: 9, пропущено (нет доступа): 465
+2026-11-10 19:34:44 INFO  C:\Users\oleksandr.dan\Documents: начат сбор
+2026-11-10 19:34:44 INFO  C:\Users\oleksandr.dan\Documents: готово за 3 мс, подходящих подпапок: 0, пропущено (нет доступа): 3
+2026-11-10 19:34:44 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: начат сбор
+2026-11-10 19:34:44 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: готово за 2 мс, подходящих подпапок: 0
+2026-11-10 19:34:44 INFO  C:\Users\oleksandr.dan\Downloads: начат сбор
+2026-11-10 19:34:44 INFO  C:\Users\oleksandr.dan\Downloads: готово за 157 мс, подходящих подпапок: 2
+2026-11-10 19:34:44 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-11-10 19:34:44 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 6 мс, подходящих подпапок: 2
+2026-11-10 19:34:44 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-11-10 19:34:44 INFO  C:\Users\oleksandr.dan\Downloads\otro: готово за 164 мс, подходящих подпапок: 2
+2026-11-10 19:34:44 INFO  C:\Windows: начат сбор
+2026-11-10 19:34:52 INFO  C:\Windows: готово за 7613 мс, подходящих подпапок: 16, пропущено (нет доступа): 65
+2026-11-10 19:35:52 INFO  C:\: начат сбор
+2026-11-10 19:36:00 INFO  C:\: готово за 8722 мс, подходящих подпапок: 9, пропущено (нет доступа): 465
+2026-11-10 19:36:00 INFO  C:\Users\oleksandr.dan\Documents: начат сбор
+2026-11-10 19:36:00 INFO  C:\Users\oleksandr.dan\Documents: готово за 4 мс, подходящих подпапок: 0, пропущено (нет доступа): 3
+2026-11-10 19:36:00 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: начат сбор
+2026-11-10 19:36:00 INFO  C:\Users\oleksandr.dan\Documents\NetBeansProjects: готово за 2 мс, подходящих подпапок: 0
+2026-11-10 19:36:00 INFO  C:\Users\oleksandr.dan\Downloads: начат сбор
+2026-11-10 19:36:01 INFO  C:\Users\oleksandr.dan\Downloads: готово за 179 мс, подходящих подпапок: 2
+2026-11-10 19:36:01 INFO  C:\Users\oleksandr.dan\Downloads\my program: начат сбор
+2026-11-10 19:36:01 INFO  C:\Users\oleksandr.dan\Downloads\my program: готово за 6 мс, подходящих подпапок: 2
+2026-11-10 19:36:01 INFO  C:\Users\oleksandr.dan\Downloads\otro: начат сбор
+2026-11-10 19:36:01 INFO  C:\Users\oleksandr.dan\Downloads\otro: готово за 152 мс, подходящих подпапок: 2
+2026-11-10 19:36:01 INFO  C:\Windows: начат сбор
+2026-11-10 19:36:08 INFO  C:\Windows: готово за 7618 мс, подходящих подпапок: 16, пропущено (нет доступа): 65
+2026-11-10 19:37:04 INFO  Выход из программы
