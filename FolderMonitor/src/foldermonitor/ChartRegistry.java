@@ -14,7 +14,11 @@ public final class ChartRegistry {
             new SubfolderSizeChart(),
             new SubfolderCountChart(),
             new GrowthIndexChart(),
-            new GrowthSpeedChart()
+            new GrowthSpeedChart(),
+            new SubfolderGrowthChart(),
+            new FoldersSizeChart(),
+            new FoldersSizeLinesChart(),
+            new FoldersIndexChart()
     );
 
     private ChartRegistry() { }

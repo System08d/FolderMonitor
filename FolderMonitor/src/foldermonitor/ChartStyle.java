@@ -1,21 +1,35 @@
 package foldermonitor;
 
 import java.awt.BasicStroke;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Paint;
 import java.awt.Stroke;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.IntFunction;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.Axis;
 import org.jfree.chart.axis.DateTickUnit;
 import org.jfree.chart.axis.DateTickUnitType;
 import org.jfree.chart.axis.TickUnits;
+import org.jfree.chart.labels.StandardCategoryItemLabelGenerator;
+import org.jfree.chart.labels.StandardCategoryToolTipGenerator;
+import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.Plot;
 import org.jfree.chart.plot.ValueMarker;
 import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.category.BarRenderer;
+import org.jfree.chart.renderer.category.StandardBarPainter;
 import org.jfree.chart.title.LegendTitle;
 import org.jfree.chart.ui.RectangleEdge;
 
@@ -44,6 +58,12 @@ public final class ChartStyle {
             xy.setRangeGridlineStroke(new BasicStroke(1f));
             styleAxis(xy.getDomainAxis());
             styleAxis(xy.getRangeAxis());
+        } else if (plot instanceof CategoryPlot cp) {
+            cp.setRangeGridlinePaint(Theme.GRID);
+            cp.setRangeGridlineStroke(new BasicStroke(1f));
+            cp.setDomainGridlinesVisible(false);
+            styleAxis(cp.getDomainAxis());
+            styleAxis(cp.getRangeAxis());
         }
     }
 
@@ -125,6 +145,68 @@ public final class ChartStyle {
         Stroke dashed = new BasicStroke(1f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER,
                 10f, new float[] {4f, 4f}, 0f);
         plot.addRangeMarker(new ValueMarker(value, Theme.TEXT_DIM, dashed));
+    }
+
+    // Столбики: цвет каждого берётся по номеру категории (так у папки один и тот же цвет на всех
+    // графиках группы 5), без градиента и теней, не слишком толстые.
+    public static BarRenderer barRenderer(IntFunction<Paint> colorOfCategory) {
+        BarRenderer renderer = new BarRenderer() {
+            @Override
+            public Paint getItemPaint(int row, int column) {
+                return colorOfCategory.apply(column);
+            }
+        };
+        renderer.setBarPainter(new StandardBarPainter());
+        renderer.setShadowVisible(false);
+        renderer.setDrawBarOutline(false);
+        renderer.setMaximumBarWidth(0.12);
+        return renderer;
+    }
+
+    // Подписи значений над столбиками и подсказка при наведении. unit с пробелом впереди: " ГБ"
+    public static void barLabels(BarRenderer renderer, NumberFormat format, String unit) {
+        renderer.setSeriesItemLabelGenerator(0, new StandardCategoryItemLabelGenerator("{2}", format));
+        renderer.setSeriesItemLabelsVisible(0, true);
+        renderer.setSeriesItemLabelPaint(0, Theme.TEXT);
+        renderer.setSeriesItemLabelFont(0, Theme.FONT_SMALL);
+        renderer.setSeriesToolTipGenerator(0,
+                new StandardCategoryToolTipGenerator("{1}: {2}" + unit, format));
+    }
+
+    // Тонкая строка пояснения над графиком («Данные на …», «Прирост с … по …»)
+    public static JPanel withCaption(String text, JComponent content) {
+        JLabel caption = new JLabel(text, SwingConstants.LEFT);
+        caption.setFont(Theme.FONT_SMALL);
+        caption.setForeground(Theme.TEXT_DIM);
+        caption.setBorder(new EmptyBorder(6, 8, 0, 8));
+        JPanel panel = new JPanel(new BorderLayout());
+        panel.setBackground(Theme.BG);
+        panel.add(caption, BorderLayout.NORTH);
+        panel.add(content, BorderLayout.CENTER);
+        return panel;
+    }
+
+    // Длинное имя папки сокращаем до 28 символов серединой: начало…конец
+    public static String shortName(String name) {
+        final int max = 28;
+        if (name.length() <= max) {
+            return name;
+        }
+        int keep = max - 1;
+        int head = keep * 2 / 3;
+        return name.substring(0, head) + "…" + name.substring(name.length() - (keep - head));
+    }
+
+    // Короткие имена для списка; если после сокращения какие-то совпали, возвращаем все полные
+    public static List<String> shortNames(List<String> names) {
+        List<String> result = new ArrayList<>();
+        for (String name : names) {
+            result.add(shortName(name));
+        }
+        if (result.stream().distinct().count() != result.size()) {
+            return new ArrayList<>(names);
+        }
+        return result;
     }
 
     // Цвета долей на кольцевых диаграммах. Подобраны так, чтобы соседние доли различались

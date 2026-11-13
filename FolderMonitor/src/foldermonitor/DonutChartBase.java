@@ -33,7 +33,6 @@ import org.jfree.data.general.DefaultPieDataset;
 public abstract class DonutChartBase implements ChartView {
 
     private static final int MAX_NAMED_SLICES = 8;       // больше именованных долей кольцо не читается
-    private static final int MAX_NAME_LENGTH = 28;       // длинные имена папок сокращаем в легенде
     private static final String OTHER = "Прочее";
     private static final Locale RU = Locale.forLanguageTag("ru");
     private static final DateTimeFormatter DATE_TIME = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -189,12 +188,7 @@ public abstract class DonutChartBase implements ChartView {
     }
 
     private static String shorten(String name) {
-        if (name.length() <= MAX_NAME_LENGTH) {
-            return name;
-        }
-        int keep = MAX_NAME_LENGTH - 1;
-        int head = keep * 2 / 3;
-        return name.substring(0, head) + "…" + name.substring(name.length() - (keep - head));
+        return ChartStyle.shortName(name);
     }
 
     // Настройки кольца, общие для всех диаграмм

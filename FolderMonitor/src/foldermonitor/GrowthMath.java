@@ -2,7 +2,11 @@ package foldermonitor;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.function.ToDoubleFunction;
 
 // Расчёты роста по дням. Чистая арифметика без JFreeChart и Swing, поэтому легко проверяется.
@@ -60,6 +64,25 @@ public final class GrowthMath {
             }
             result.add(new DayValue(series.get(i).day(), sum / (i - from + 1)));
         }
+        return result;
+    }
+
+    // Имя и число (подпапка и её прирост)
+    public record NamedValue(String name, double value) { }
+
+    // Рейтинг по приросту: для каждой подпапки конец минус начало, по убыванию (самый быстрый рост первым).
+    // Подпапки, которой в какой-то момент нет в данных (например, она ещё не дошла до порога размера),
+    // в этот момент приписывается 0. Это принятое правило для пропущенных значений.
+    public static List<NamedValue> ranking(Map<String, Double> start, Map<String, Double> end) {
+        Set<String> names = new HashSet<>(start.keySet());
+        names.addAll(end.keySet());
+        List<NamedValue> result = new ArrayList<>();
+        for (String name : names) {
+            result.add(new NamedValue(name, end.getOrDefault(name, 0.0) - start.getOrDefault(name, 0.0)));
+        }
+        // при равном приросте порядок по имени, чтобы список не прыгал от запуска к запуску
+        result.sort(Comparator.comparingDouble(NamedValue::value).reversed()
+                .thenComparing(NamedValue::name));
         return result;
     }
 
